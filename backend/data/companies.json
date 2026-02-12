@@ -1,0 +1,1004 @@
+{
+  "companies": [
+    {
+      "company_id": "snowflake",
+      "name": "Snowflake Inc.",
+      "ticker": "SNOW",
+      "status": "public",
+      "sector": "cloud_data_platforms",
+      "description": "Cloud-native data warehousing and analytics platform with consumption-based pricing and data sharing capabilities.",
+      "founded_year": 2012,
+      "hq": "Bozeman, MT",
+      "financials": {
+        "market_cap_b": 56.2,
+        "current_price": 168.5,
+        "pe_ratio": null,
+        "revenue_ttm_b": 3.63,
+        "gross_margin": 0.67,
+        "operating_margin": -0.04,
+        "ebitda_b": null,
+        "free_cash_flow_b": 0.85,
+        "debt_to_equity": 0.15,
+        "price_to_sales": 15.48,
+        "data_source": "yfinance_seeded",
+        "last_updated": "2026-02-11T23:17:05.234044",
+        "edgar": {
+          "revenue_annual_b": 3.63,
+          "net_income_annual_b": -1.29,
+          "total_assets_annual_b": 9.03,
+          "rd_expense_annual_b": 1.78,
+          "operating_cash_flow_annual_b": 0.96,
+          "data_source": "sec_edgar",
+          "last_updated": "2026-02-11T23:13:25.501096"
+        }
+      },
+      "growth_signals": {
+        "employee_count_est": 7200,
+        "yoy_employee_growth": 0.08,
+        "github_stars": null,
+        "developer_community_size": "medium"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "databricks",
+      "name": "Databricks",
+      "ticker": null,
+      "status": "private",
+      "sector": "cloud_data_platforms",
+      "description": "Unified analytics platform built on Apache Spark, combining data engineering, data science, and ML on a lakehouse architecture.",
+      "founded_year": 2013,
+      "hq": "San Francisco, CA",
+      "financials": {
+        "revenue_ttm_b": 2.4,
+        "valuation_b": 62.0,
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 7000,
+        "yoy_employee_growth": 0.15,
+        "github_stars": null,
+        "developer_community_size": "large"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "bigquery",
+      "name": "Google BigQuery",
+      "ticker": "GOOGL",
+      "status": "public_subsidiary",
+      "sector": "cloud_data_platforms",
+      "parent_company": "Alphabet Inc.",
+      "description": "Serverless, multi-cloud data warehouse with built-in ML capabilities and pay-per-query pricing.",
+      "founded_year": 2010,
+      "hq": "Mountain View, CA",
+      "financials": {
+        "market_cap_b": 2280.0,
+        "current_price": 185.0,
+        "pe_ratio": 24.5,
+        "revenue_ttm_b": 402.84,
+        "gross_margin": 0.57,
+        "operating_margin": 0.32,
+        "ebitda_b": 125.0,
+        "free_cash_flow_b": 72.0,
+        "debt_to_equity": 0.05,
+        "price_to_sales": 5.66,
+        "data_source": "yfinance_seeded",
+        "last_updated": "2026-02-11T23:17:08.775967",
+        "edgar": {
+          "revenue_annual_b": 402.84,
+          "net_income_annual_b": 132.17,
+          "total_debt_annual_b": 49.09,
+          "total_assets_annual_b": 595.28,
+          "rd_expense_annual_b": 61.09,
+          "operating_cash_flow_annual_b": 164.71,
+          "data_source": "sec_edgar",
+          "last_updated": "2026-02-11T23:13:26.025177"
+        }
+      },
+      "growth_signals": {
+        "employee_count_est": null,
+        "github_stars": null,
+        "developer_community_size": "large"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "redshift",
+      "name": "Amazon Redshift",
+      "ticker": "AMZN",
+      "status": "public_subsidiary",
+      "sector": "cloud_data_platforms",
+      "parent_company": "Amazon Web Services",
+      "description": "AWS-native cloud data warehouse with deep integration into the AWS ecosystem and enterprise penetration.",
+      "founded_year": 2012,
+      "hq": "Seattle, WA",
+      "financials": {
+        "market_cap_b": 2350.0,
+        "current_price": 225.0,
+        "pe_ratio": 42.0,
+        "revenue_ttm_b": 716.92,
+        "gross_margin": 0.48,
+        "operating_margin": 0.11,
+        "ebitda_b": 115.0,
+        "free_cash_flow_b": 36.0,
+        "debt_to_equity": 0.52,
+        "price_to_sales": 3.28,
+        "data_source": "yfinance_seeded",
+        "last_updated": "2026-02-11T23:17:12.218607",
+        "edgar": {
+          "revenue_annual_b": 716.92,
+          "net_income_annual_b": 77.67,
+          "total_debt_annual_b": 68.84,
+          "total_assets_annual_b": 818.04,
+          "operating_cash_flow_annual_b": 139.51,
+          "data_source": "sec_edgar",
+          "last_updated": "2026-02-11T23:13:26.537372"
+        }
+      },
+      "growth_signals": {
+        "employee_count_est": null,
+        "github_stars": null,
+        "developer_community_size": "large"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "azure_synapse",
+      "name": "Azure Synapse Analytics",
+      "ticker": "MSFT",
+      "status": "public_subsidiary",
+      "sector": "cloud_data_platforms",
+      "parent_company": "Microsoft",
+      "description": "Integrated analytics service combining enterprise data warehousing and big data analytics within the Microsoft ecosystem.",
+      "founded_year": 2019,
+      "hq": "Redmond, WA",
+      "financials": {
+        "market_cap_b": 3100.0,
+        "current_price": 415.0,
+        "pe_ratio": 35.0,
+        "revenue_ttm_b": 262.0,
+        "gross_margin": 0.69,
+        "operating_margin": 0.44,
+        "ebitda_b": 135.0,
+        "free_cash_flow_b": 74.0,
+        "debt_to_equity": 0.35,
+        "price_to_sales": 11.83,
+        "data_source": "yfinance_seeded",
+        "last_updated": "2026-02-11T23:17:15.871859",
+        "edgar": {
+          "revenue_annual_b": 62.48,
+          "net_income_annual_b": 101.83,
+          "total_debt_annual_b": 43.15,
+          "total_assets_annual_b": 619.0,
+          "rd_expense_annual_b": 32.49,
+          "operating_cash_flow_annual_b": 136.16,
+          "data_source": "sec_edgar",
+          "last_updated": "2026-02-11T23:13:27.019806"
+        }
+      },
+      "growth_signals": {
+        "employee_count_est": null,
+        "github_stars": null,
+        "developer_community_size": "large"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "teradata",
+      "name": "Teradata Corporation",
+      "ticker": "TDC",
+      "status": "public",
+      "sector": "cloud_data_platforms",
+      "description": "Legacy enterprise data warehouse leader with 30+ year customer relationships, transitioning to hybrid cloud.",
+      "founded_year": 1979,
+      "hq": "San Diego, CA",
+      "financials": {
+        "market_cap_b": 2.8,
+        "current_price": 28.0,
+        "pe_ratio": 35.0,
+        "revenue_ttm_b": 1.79,
+        "gross_margin": 0.6,
+        "operating_margin": 0.06,
+        "ebitda_b": 0.35,
+        "free_cash_flow_b": 0.22,
+        "debt_to_equity": 1.8,
+        "price_to_sales": 1.56,
+        "data_source": "yfinance_seeded",
+        "last_updated": "2026-02-11T23:17:19.321235",
+        "edgar": {
+          "revenue_annual_b": 2.16,
+          "net_income_annual_b": 0.11,
+          "total_debt_annual_b": 0.46,
+          "total_assets_annual_b": 1.7,
+          "rd_expense_annual_b": 0.28,
+          "operating_cash_flow_annual_b": 0.3,
+          "data_source": "sec_edgar",
+          "last_updated": "2026-02-11T23:13:27.506072"
+        }
+      },
+      "growth_signals": {
+        "employee_count_est": 6500,
+        "yoy_employee_growth": -0.05,
+        "github_stars": null,
+        "developer_community_size": "small"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "cloudera",
+      "name": "Cloudera",
+      "ticker": null,
+      "status": "private",
+      "sector": "cloud_data_platforms",
+      "description": "Hadoop-heritage hybrid data platform taken private by PE. Enterprise data management and analytics.",
+      "founded_year": 2008,
+      "hq": "Santa Clara, CA",
+      "financials": {
+        "revenue_ttm_b": 0.9,
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 3000,
+        "yoy_employee_growth": -0.03,
+        "github_stars": null,
+        "developer_community_size": "medium"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "motherduck",
+      "name": "MotherDuck",
+      "ticker": null,
+      "status": "private",
+      "sector": "cloud_data_platforms",
+      "description": "DuckDB-based serverless analytics platform. Cloud-native with local-first architecture.",
+      "founded_year": 2022,
+      "hq": "Seattle, WA",
+      "financials": {
+        "funding_total_m": 52.5,
+        "last_funding_round": "Series B",
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 50,
+        "yoy_employee_growth": 0.5,
+        "github_stars": null,
+        "developer_community_size": "small"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "c3ai",
+      "name": "C3 AI",
+      "ticker": "AI",
+      "status": "public",
+      "sector": "ai_ml_platforms",
+      "description": "Enterprise AI application platform with industry-specific solutions for energy, defense, manufacturing, and financial services.",
+      "founded_year": 2009,
+      "hq": "Redwood City, CA",
+      "financials": {
+        "market_cap_b": 4.2,
+        "current_price": 32.0,
+        "pe_ratio": null,
+        "revenue_ttm_b": 0.39,
+        "gross_margin": 0.58,
+        "operating_margin": -0.52,
+        "ebitda_b": null,
+        "free_cash_flow_b": -0.08,
+        "debt_to_equity": 0.0,
+        "price_to_sales": 10.77,
+        "data_source": "yfinance_seeded",
+        "last_updated": "2026-02-11T23:17:22.720377",
+        "edgar": {
+          "revenue_annual_b": 0.39,
+          "net_income_annual_b": -0.29,
+          "total_assets_annual_b": 1.03,
+          "rd_expense_annual_b": 0.23,
+          "operating_cash_flow_annual_b": -0.04,
+          "data_source": "sec_edgar",
+          "last_updated": "2026-02-11T23:13:27.960284"
+        }
+      },
+      "growth_signals": {
+        "employee_count_est": 900,
+        "yoy_employee_growth": 0.05,
+        "github_stars": null,
+        "developer_community_size": "small"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "palantir",
+      "name": "Palantir Technologies",
+      "ticker": "PLTR",
+      "status": "public",
+      "sector": "ai_ml_platforms",
+      "description": "Data integration and analytics platform with deep government relationships. Gotham (government) and Foundry (enterprise) products.",
+      "founded_year": 2003,
+      "hq": "Denver, CO",
+      "financials": {
+        "market_cap_b": 260.0,
+        "current_price": 110.0,
+        "pe_ratio": 400.0,
+        "revenue_ttm_b": 2.87,
+        "gross_margin": 0.81,
+        "operating_margin": 0.12,
+        "ebitda_b": 0.45,
+        "free_cash_flow_b": 0.98,
+        "debt_to_equity": 0.0,
+        "price_to_sales": 90.59,
+        "data_source": "yfinance_seeded",
+        "last_updated": "2026-02-11T23:17:26.130380",
+        "edgar": {
+          "revenue_annual_b": 2.87,
+          "net_income_annual_b": 0.46,
+          "total_debt_annual_b": 0.0,
+          "total_assets_annual_b": 6.34,
+          "rd_expense_annual_b": 0.51,
+          "operating_cash_flow_annual_b": 1.15,
+          "data_source": "sec_edgar",
+          "last_updated": "2026-02-11T23:13:28.410574"
+        }
+      },
+      "growth_signals": {
+        "employee_count_est": 3800,
+        "yoy_employee_growth": 0.1,
+        "github_stars": null,
+        "developer_community_size": "small"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "dataiku",
+      "name": "Dataiku",
+      "ticker": null,
+      "status": "private",
+      "sector": "ai_ml_platforms",
+      "description": "End-to-end ML platform emphasizing collaborative data science. Strong European presence.",
+      "founded_year": 2013,
+      "hq": "New York, NY",
+      "financials": {
+        "funding_total_m": 846,
+        "last_funding_round": "Series F",
+        "valuation_b": 3.7,
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 1500,
+        "yoy_employee_growth": 0.12,
+        "github_stars": null,
+        "developer_community_size": "medium"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "datarobot",
+      "name": "DataRobot",
+      "ticker": null,
+      "status": "private",
+      "sector": "ai_ml_platforms",
+      "description": "AutoML platform for enterprise AI deployment. Focus on automated model building and monitoring.",
+      "founded_year": 2012,
+      "hq": "Boston, MA",
+      "financials": {
+        "funding_total_m": 1000,
+        "last_funding_round": "Series G",
+        "valuation_b": 6.3,
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 1200,
+        "yoy_employee_growth": 0.0,
+        "github_stars": null,
+        "developer_community_size": "medium"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "h2o_ai",
+      "name": "H2O.ai",
+      "ticker": null,
+      "status": "private",
+      "sector": "ai_ml_platforms",
+      "description": "Open-source machine learning platform with enterprise support. Known for H2O-3 and Driverless AI.",
+      "founded_year": 2012,
+      "hq": "Mountain View, CA",
+      "financials": {
+        "funding_total_m": 250,
+        "last_funding_round": "Series E",
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 400,
+        "yoy_employee_growth": 0.05,
+        "github_stars": 6800,
+        "developer_community_size": "medium"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "scale_ai",
+      "name": "Scale AI",
+      "ticker": null,
+      "status": "private",
+      "sector": "ai_ml_platforms",
+      "description": "Data labeling and ML data infrastructure platform. Government and enterprise AI data operations.",
+      "founded_year": 2016,
+      "hq": "San Francisco, CA",
+      "financials": {
+        "funding_total_m": 1000,
+        "last_funding_round": "Series F",
+        "valuation_b": 13.8,
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 1000,
+        "yoy_employee_growth": 0.15,
+        "github_stars": null,
+        "developer_community_size": "medium"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "wandb",
+      "name": "Weights & Biases",
+      "ticker": null,
+      "status": "private",
+      "sector": "ai_ml_platforms",
+      "description": "MLOps platform for experiment tracking, model versioning, and developer-focused ML tools.",
+      "founded_year": 2017,
+      "hq": "San Francisco, CA",
+      "financials": {
+        "funding_total_m": 250,
+        "last_funding_round": "Series D",
+        "valuation_b": 1.25,
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 300,
+        "yoy_employee_growth": 0.2,
+        "github_stars": 8500,
+        "developer_community_size": "large"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "huggingface",
+      "name": "Hugging Face",
+      "ticker": null,
+      "status": "private",
+      "sector": "ai_ml_platforms",
+      "description": "Open-source AI model hub and community platform. Central repository for transformers and ML models.",
+      "founded_year": 2016,
+      "hq": "New York, NY",
+      "financials": {
+        "funding_total_m": 395,
+        "last_funding_round": "Series D",
+        "valuation_b": 4.5,
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 250,
+        "yoy_employee_growth": 0.25,
+        "github_stars": 130000,
+        "developer_community_size": "very_large"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "fivetran",
+      "name": "Fivetran",
+      "ticker": null,
+      "status": "private",
+      "sector": "data_integration_etl",
+      "description": "Automated data connectors and ELT platform. 300+ pre-built connectors for data integration.",
+      "founded_year": 2012,
+      "hq": "Oakland, CA",
+      "financials": {
+        "funding_total_m": 730,
+        "last_funding_round": "Series D",
+        "valuation_b": 5.6,
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 1200,
+        "yoy_employee_growth": 0.1,
+        "github_stars": null,
+        "developer_community_size": "medium"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "dbt_labs",
+      "name": "dbt Labs",
+      "ticker": null,
+      "status": "private",
+      "sector": "data_integration_etl",
+      "description": "SQL-based data transformation platform. Pioneer of analytics engineering movement.",
+      "founded_year": 2016,
+      "hq": "Philadelphia, PA",
+      "financials": {
+        "funding_total_m": 414,
+        "last_funding_round": "Series D",
+        "valuation_b": 4.2,
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 700,
+        "yoy_employee_growth": 0.08,
+        "github_stars": 9500,
+        "developer_community_size": "very_large"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "airbyte",
+      "name": "Airbyte",
+      "ticker": null,
+      "status": "private",
+      "sector": "data_integration_etl",
+      "description": "Open-source data integration platform with 350+ connectors. ELT-focused.",
+      "founded_year": 2020,
+      "hq": "San Francisco, CA",
+      "financials": {
+        "funding_total_m": 181,
+        "last_funding_round": "Series B",
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 250,
+        "yoy_employee_growth": 0.2,
+        "github_stars": 15000,
+        "developer_community_size": "large"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "informatica",
+      "name": "Informatica Inc.",
+      "ticker": "INFA",
+      "status": "public",
+      "sector": "data_integration_etl",
+      "description": "Legacy ETL leader modernizing to cloud. Enterprise data management, integration, and governance.",
+      "founded_year": 1993,
+      "hq": "Redwood City, CA",
+      "financials": {
+        "market_cap_b": 7.8,
+        "current_price": 26.0,
+        "pe_ratio": null,
+        "revenue_ttm_b": 1.64,
+        "gross_margin": 0.78,
+        "operating_margin": 0.02,
+        "ebitda_b": 0.35,
+        "free_cash_flow_b": 0.41,
+        "debt_to_equity": 2.2,
+        "price_to_sales": 4.76,
+        "data_source": "yfinance_seeded",
+        "last_updated": "2026-02-11T23:17:29.554942",
+        "edgar": {
+          "revenue_annual_b": 1.64,
+          "net_income_annual_b": 0.01,
+          "total_debt_annual_b": 1.82,
+          "total_assets_annual_b": 5.28,
+          "rd_expense_annual_b": 0.32,
+          "operating_cash_flow_annual_b": 0.41,
+          "data_source": "sec_edgar",
+          "last_updated": "2026-02-11T23:16:13.607351"
+        }
+      },
+      "growth_signals": {
+        "employee_count_est": 6000,
+        "yoy_employee_growth": 0.02,
+        "github_stars": null,
+        "developer_community_size": "medium"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "talend",
+      "name": "Talend (Qlik)",
+      "ticker": null,
+      "status": "private",
+      "sector": "data_integration_etl",
+      "description": "Data integration and quality platform acquired by Qlik. Open-source heritage.",
+      "founded_year": 2005,
+      "hq": "Redwood City, CA",
+      "financials": {
+        "revenue_ttm_b": 0.3,
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 2000,
+        "yoy_employee_growth": 0.0,
+        "github_stars": null,
+        "developer_community_size": "medium"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "matillion",
+      "name": "Matillion",
+      "ticker": null,
+      "status": "private",
+      "sector": "data_integration_etl",
+      "description": "Cloud-native ETL platform designed for cloud data warehouses like Snowflake and BigQuery.",
+      "founded_year": 2011,
+      "hq": "Manchester, UK",
+      "financials": {
+        "funding_total_m": 220,
+        "last_funding_round": "Series E",
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 600,
+        "yoy_employee_growth": 0.08,
+        "github_stars": null,
+        "developer_community_size": "small"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "monte_carlo",
+      "name": "Monte Carlo",
+      "ticker": null,
+      "status": "private",
+      "sector": "data_observability_governance",
+      "description": "Data observability pioneer. Automated data reliability monitoring and incident management.",
+      "founded_year": 2019,
+      "hq": "San Francisco, CA",
+      "financials": {
+        "funding_total_m": 236,
+        "last_funding_round": "Series D",
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 250,
+        "yoy_employee_growth": 0.15,
+        "github_stars": null,
+        "developer_community_size": "medium"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "atlan",
+      "name": "Atlan",
+      "ticker": null,
+      "status": "private",
+      "sector": "data_observability_governance",
+      "description": "Active metadata platform and data catalog. Collaborative data workspace for modern data teams.",
+      "founded_year": 2019,
+      "hq": "New York, NY",
+      "financials": {
+        "funding_total_m": 255,
+        "last_funding_round": "Series C",
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 500,
+        "yoy_employee_growth": 0.25,
+        "github_stars": null,
+        "developer_community_size": "medium"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "alation",
+      "name": "Alation",
+      "ticker": null,
+      "status": "private",
+      "sector": "data_observability_governance",
+      "description": "Enterprise data catalog and governance platform. Machine learning-driven data discovery.",
+      "founded_year": 2012,
+      "hq": "Redwood City, CA",
+      "financials": {
+        "funding_total_m": 340,
+        "last_funding_round": "Series E",
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 700,
+        "yoy_employee_growth": 0.05,
+        "github_stars": null,
+        "developer_community_size": "small"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "great_expectations",
+      "name": "Great Expectations",
+      "ticker": null,
+      "status": "private",
+      "sector": "data_observability_governance",
+      "description": "Open-source data quality and validation framework. Python-based, developer-friendly.",
+      "founded_year": 2018,
+      "hq": "Remote",
+      "financials": {
+        "funding_total_m": 71,
+        "last_funding_round": "Series B",
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 80,
+        "yoy_employee_growth": 0.05,
+        "github_stars": 10000,
+        "developer_community_size": "large"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "collibra",
+      "name": "Collibra",
+      "ticker": null,
+      "status": "private",
+      "sector": "data_observability_governance",
+      "description": "Enterprise data governance and catalog platform. Strong in regulated industries.",
+      "founded_year": 2008,
+      "hq": "New York, NY",
+      "financials": {
+        "funding_total_m": 450,
+        "last_funding_round": "Series G",
+        "valuation_b": 5.25,
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 1200,
+        "yoy_employee_growth": 0.05,
+        "github_stars": null,
+        "developer_community_size": "small"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "pinecone",
+      "name": "Pinecone",
+      "ticker": null,
+      "status": "private",
+      "sector": "vector_ai_infrastructure",
+      "description": "Managed vector database for AI applications. Purpose-built for semantic search and retrieval.",
+      "founded_year": 2019,
+      "hq": "New York, NY",
+      "financials": {
+        "funding_total_m": 238,
+        "last_funding_round": "Series B",
+        "valuation_b": 750,
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 200,
+        "yoy_employee_growth": 0.3,
+        "github_stars": null,
+        "developer_community_size": "large"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "weaviate",
+      "name": "Weaviate",
+      "ticker": null,
+      "status": "private",
+      "sector": "vector_ai_infrastructure",
+      "description": "Open-source vector database with hybrid search capabilities. GraphQL-based API.",
+      "founded_year": 2019,
+      "hq": "Amsterdam, Netherlands",
+      "financials": {
+        "funding_total_m": 68,
+        "last_funding_round": "Series B",
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 120,
+        "yoy_employee_growth": 0.35,
+        "github_stars": 11000,
+        "developer_community_size": "large"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "chroma",
+      "name": "Chroma",
+      "ticker": null,
+      "status": "private",
+      "sector": "vector_ai_infrastructure",
+      "description": "Lightweight open-source embedding database. Developer-friendly, easy integration with LLM applications.",
+      "founded_year": 2022,
+      "hq": "San Francisco, CA",
+      "financials": {
+        "funding_total_m": 20,
+        "last_funding_round": "Seed",
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 30,
+        "yoy_employee_growth": 0.5,
+        "github_stars": 14000,
+        "developer_community_size": "large"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "zilliz",
+      "name": "Zilliz / Milvus",
+      "ticker": null,
+      "status": "private",
+      "sector": "vector_ai_infrastructure",
+      "description": "Scalable vector similarity search engine. Open-source Milvus project with managed Zilliz Cloud.",
+      "founded_year": 2017,
+      "hq": "Redwood City, CA",
+      "financials": {
+        "funding_total_m": 113,
+        "last_funding_round": "Series B",
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 200,
+        "yoy_employee_growth": 0.2,
+        "github_stars": 30000,
+        "developer_community_size": "large"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "qdrant",
+      "name": "Qdrant",
+      "ticker": null,
+      "status": "private",
+      "sector": "vector_ai_infrastructure",
+      "description": "Rust-based open-source vector search engine. High performance, filtering support.",
+      "founded_year": 2021,
+      "hq": "Berlin, Germany",
+      "financials": {
+        "funding_total_m": 12,
+        "last_funding_round": "Seed",
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 60,
+        "yoy_employee_growth": 0.4,
+        "github_stars": 20000,
+        "developer_community_size": "large"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "firebolt",
+      "name": "Firebolt",
+      "ticker": null,
+      "status": "private",
+      "sector": "emerging_disruptors",
+      "description": "Cloud data warehouse optimized for sub-second analytics performance at scale.",
+      "founded_year": 2019,
+      "hq": "New York, NY",
+      "financials": {
+        "funding_total_m": 269,
+        "last_funding_round": "Series D",
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 200,
+        "yoy_employee_growth": 0.15,
+        "github_stars": null,
+        "developer_community_size": "small"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "clickhouse",
+      "name": "ClickHouse",
+      "ticker": null,
+      "status": "private",
+      "sector": "emerging_disruptors",
+      "description": "Open-source column-oriented OLAP database for real-time analytics. Originally developed at Yandex.",
+      "founded_year": 2021,
+      "hq": "San Francisco, CA",
+      "financials": {
+        "funding_total_m": 300,
+        "last_funding_round": "Series C",
+        "valuation_b": 4.0,
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 350,
+        "yoy_employee_growth": 0.25,
+        "github_stars": 37000,
+        "developer_community_size": "very_large"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "starrocks",
+      "name": "StarRocks",
+      "ticker": null,
+      "status": "private",
+      "sector": "emerging_disruptors",
+      "description": "Open-source real-time analytics MPP database. Sub-second queries on fresh data.",
+      "founded_year": 2020,
+      "hq": "Mountain View, CA",
+      "financials": {
+        "funding_total_m": 62,
+        "last_funding_round": "Series B",
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 100,
+        "yoy_employee_growth": 0.3,
+        "github_stars": 8500,
+        "developer_community_size": "medium"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "neon",
+      "name": "Neon",
+      "ticker": null,
+      "status": "private",
+      "sector": "emerging_disruptors",
+      "description": "Serverless Postgres with database branching. Developer-focused, consumption-based pricing.",
+      "founded_year": 2021,
+      "hq": "San Francisco, CA",
+      "financials": {
+        "funding_total_m": 104,
+        "last_funding_round": "Series B",
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 100,
+        "yoy_employee_growth": 0.35,
+        "github_stars": 14000,
+        "developer_community_size": "large"
+      },
+      "llm_enriched": {}
+    },
+    {
+      "company_id": "supabase",
+      "name": "Supabase",
+      "ticker": null,
+      "status": "private",
+      "sector": "emerging_disruptors",
+      "description": "Open-source Firebase alternative built on Postgres. Backend-as-a-service with real-time features.",
+      "founded_year": 2020,
+      "hq": "San Francisco, CA",
+      "financials": {
+        "funding_total_m": 116,
+        "last_funding_round": "Series C",
+        "data_source": "estimated",
+        "last_updated": null
+      },
+      "growth_signals": {
+        "employee_count_est": 150,
+        "yoy_employee_growth": 0.3,
+        "github_stars": 72000,
+        "developer_community_size": "very_large"
+      },
+      "llm_enriched": {}
+    }
+  ]
+}
