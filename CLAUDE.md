@@ -8,34 +8,83 @@ InvestorLens is a persona-driven company intelligence search engine for the Ente
 - **Backend API:** FastAPI (Python)
 - **Orchestration:** LangGraph (LangChain)
 - **Observability:** LangSmith
-- **Knowledge Graph:** Neo4j (Docker or Aura free tier)
-- **LLM:** Claude (Anthropic API)
-- **Data Ingestion:** yfinance, SEC EDGAR API, GitHub API
+- **Knowledge Graph:** Neo4j (Docker, local — `neo4j-investorlens` container)
+- **LLM Enrichment:** OpenAI GPT-4o via LangChain (LangChain-OpenAI). Anthropic support built in but unused (no credits).
+- **Data Ingestion:** SEC EDGAR API (primary), yfinance (seeded fallback — Yahoo rate-limits from local env)
 - **Deployment:** Vercel (frontend) + Railway/Render (backend) + Neo4j Aura
 
 ## Project Structure
 ```
-investorlens/
+InvestorLens/
 ├── backend/
-│   ├── data/           # Company universe, ingestion scripts, LLM enrichment
-│   ├── graph/          # Neo4j schema, Cypher query templates, graph loader
-│   ├── search/         # Query parsing, persona ranking, search pipeline
-│   ├── agents/         # LangGraph workflows, agent nodes, prompt templates
-│   │   └── prompts/    # Persona-specific explanation prompts
-│   └── api/            # FastAPI app, routes, Pydantic models
-├── frontend/
-│   └── src/
-│       ├── components/ # SearchBar, PersonaSelector, ResultsPanel, GraphPanel, TracePanel
-│       └── hooks/      # useSearch, useGraph
-├── .env                # API keys (not committed)
-└── CLAUDE.md           # This file
+│   ├── config.py                  # Centralized env config (.env loading)
+│   ├── requirements.txt           # Python dependencies
+│   ├── venv/                      # Python virtual environment
+│   ├── data/
+│   │   ├── companies.json         # Single source of truth — 37 companies with financials + LLM enrichment
+│   │   ├── ingest_yfinance.py     # Yahoo Finance pull (seeded fallback when rate-limited)
+│   │   ├── ingest_edgar.py        # SEC EDGAR XBRL API pull (works reliably)
+│   │   └── enrich_llm.py          # LLM enrichment pipeline (OpenAI/Anthropic via --provider flag)
+│   ├── graph/
+│   │   ├── schema.cypher          # Neo4j constraints & indexes
+│   │   ├── loader.py              # Load companies.json → Neo4j (nodes + edges)
+│   │   └── queries.py             # Cypher query templates + verification
+│   ├── search/                    # (Phase 2 — not yet built)
+│   ├── agents/                    # (Phase 3 — not yet built)
+│   │   └── prompts/
+│   └── api/                       # (Phase 3 — not yet built)
+├── frontend/                      # (Phase 4 — not yet built)
+├── .env                           # API keys: OPENAI_API_KEY, ANTHROPIC_API_KEY, NEO4J creds, etc.
+├── .env.example                   # Template for .env
+├── .gitignore
+└── CLAUDE.md                      # This file
 ```
 
 ## Build Phases
-1. **Phase 1: Data Pipeline + Knowledge Graph** — Ingest, enrich, load ~37 companies into Neo4j
+1. **Phase 1: Data Pipeline + Knowledge Graph** — COMPLETED
 2. **Phase 2: Search + Persona Ranking Engine** — Query parsing, graph traversal, persona-specific scoring
 3. **Phase 3: LangChain Orchestration + NL Explanations** — LangGraph agents, LangSmith tracing, NL generation
 4. **Phase 4: Frontend** — React UI with search, results, graph viz, trace viewer
+
+## Phase 1 Completed — What's In the Graph
+- **37 Company nodes** across 6 sectors, all with LLM-enriched scores
+- **6 Segment nodes** (Cloud Data Platforms, AI/ML Platforms, etc.)
+- **23 InvestmentTheme nodes** (data_gravity, open_source, consumption_pricing, etc.)
+- **384 total edges**: 128 COMPETES_WITH, 128 SHARES_INVESTMENT_THEME, 70 PARTNERS_WITH, 37 TARGETS_SAME_SEGMENT, 18 DISRUPTS, 3 SUPPLIES_TO
+- **Financial data** for 8 public companies from SEC EDGAR + seeded market data
+- **LLM-enriched attributes** per company: moat_durability, enterprise_readiness_score, developer_adoption_score, operational_improvement_potential, product_maturity_score, customer_switching_cost, revenue_predictability, market_timing_score, financial_profile_cluster, investment_themes, competitive_relationships
+
+### Verified Demo Query Results
+**Snowflake competitors (COMPETES_WITH):** Redshift (0.9), BigQuery (0.9), Databricks (0.9), Cloudera (0.8), Teradata (0.8), Azure Synapse (0.8), ClickHouse (0.7), Firebolt (0.7), MotherDuck (0.5)
+
+**C3 AI competitors (COMPETES_WITH):** Palantir (0.7), Scale AI (0.6), DataRobot (0.6), Hugging Face (0.5)
+
+### How to Re-run Phase 1 Pipelines
+```bash
+cd /Users/achilles92/Documents/Projects/InvestorLens
+source backend/venv/bin/activate
+
+# Re-ingest financial data
+python3 backend/data/ingest_edgar.py
+python3 backend/data/ingest_yfinance.py
+
+# Re-run LLM enrichment (skips already enriched unless --force)
+python3 backend/data/enrich_llm.py --provider openai
+python3 backend/data/enrich_llm.py --provider openai --force  # re-enrich all
+
+# Reload graph (clears and rebuilds from companies.json)
+python3 backend/graph/loader.py
+
+# Verify graph
+python3 backend/graph/queries.py
+```
+
+### Neo4j Access
+- **Docker container:** `neo4j-investorlens`
+- **Browser UI:** http://localhost:7474
+- **Bolt:** bolt://localhost:7687
+- **Auth:** neo4j / investorlens
+- **Start/stop:** `docker start neo4j-investorlens` / `docker stop neo4j-investorlens`
 
 ## Company Universe
 ~37 companies across 6 categories:
@@ -61,16 +110,27 @@ investorlens/
 5. "Compare Pinecone vs Weaviate through a VC lens" — emerging vector DB space
 6. "Which data infrastructure companies have the strongest moats?" — stretch, attribute search
 
-## Current Status
-- **Phase:** Pre-build (spec received)
-- **What's been done:** CLAUDE.md created, project directory initialized
-- **What's next:** Phase 1 — project scaffolding, data pipeline, Neo4j setup
-
 ## Key Decisions Made
-_(none yet — will be updated as we build)_
+- **No Crunchbase** — skipped entirely, focusing on SEC EDGAR + Yahoo Finance for public companies
+- **OpenAI for enrichment** — Anthropic account has no credits; OpenAI GPT-4o used via LangChain
+- **Yahoo Finance seeded fallback** — yfinance library gets 429 rate-limited; seeded market data used as fallback with live attempt first
+- **SEC EDGAR as primary** — reliable, free, provides revenue, net income, debt, R&D, operating cash flow
+- **Informatica CIK** — corrected to 0001868778 (was wrong in initial mapping)
+- **Neo4j via Docker** — local container, not Aura cloud
+- **Bidirectional COMPETES_WITH** — edges created in both directions, queries deduplicate with `WITH t, max(r.strength)`
 
 ## Important Notes
 - The user worked at C3 AI — Query 4 results must be personally validatable
 - Ranking is a product philosophy, not a technical detail — this is the core insight
 - Ship Value Investor/PE/VC personas first, add Acquirer/Buyer in Phase 3
-- Start with yfinance for financials; EDGAR is enrichment, not dependency
+- `companies.json` is the single source of truth — all pipelines read from and write back to it
+- LLM enrichment supports `--provider openai` and `--provider anthropic` flags
+- Neo4j container must be running for graph operations: `docker start neo4j-investorlens`
+
+## What's Next — Phase 2
+Build the search + persona ranking engine:
+- `backend/search/query_parser.py` — classify query type, extract entities
+- `backend/search/graph_traversal.py` — Neo4j traversal per query type
+- `backend/search/persona_ranker.py` — 5 scoring functions with different weight configs
+- `backend/search/persona_configs.py` — weight configurations per lens
+- `backend/search/search_pipeline.py` — orchestrate parse → retrieve → rank

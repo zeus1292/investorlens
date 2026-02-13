@@ -1,7 +1,9 @@
 """
 LLM Enrichment Pipeline.
-Uses LangChain + Claude to score all companies on persona-relevant attributes
+Uses LangChain + LLM to score all companies on persona-relevant attributes
 and extract competitive relationships for the knowledge graph.
+
+Supports OpenAI (default) and Anthropic backends via --provider flag.
 """
 import json
 import sys
@@ -9,12 +11,11 @@ import os
 import time
 from datetime import datetime
 
-from langchain_anthropic import ChatAnthropic
 from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel, Field
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from config import COMPANIES_FILE, ANTHROPIC_API_KEY
+from config import COMPANIES_FILE, ANTHROPIC_API_KEY, OPENAI_API_KEY
 
 # Valid relationship types for the knowledge graph
 RELATIONSHIP_TYPES = [
@@ -120,7 +121,29 @@ def enrich_company(llm, company: dict, company_list: str) -> dict:
     return enriched
 
 
-def run(batch_size: int = 5, skip_existing: bool = True):
+def _get_llm(provider: str = "openai"):
+    """Initialize LLM based on provider choice."""
+    if provider == "openai":
+        from langchain_openai import ChatOpenAI
+        return ChatOpenAI(
+            model="gpt-4o",
+            api_key=OPENAI_API_KEY,
+            temperature=0.3,
+            max_tokens=2000,
+        )
+    elif provider == "anthropic":
+        from langchain_anthropic import ChatAnthropic
+        return ChatAnthropic(
+            model="claude-sonnet-4-5-20250929",
+            api_key=ANTHROPIC_API_KEY,
+            temperature=0.3,
+            max_tokens=2000,
+        )
+    else:
+        raise ValueError(f"Unknown provider: {provider}")
+
+
+def run(batch_size: int = 5, skip_existing: bool = True, provider: str = "openai"):
     """Run LLM enrichment for all companies."""
     with open(COMPANIES_FILE, "r") as f:
         data = json.load(f)
@@ -128,12 +151,7 @@ def run(batch_size: int = 5, skip_existing: bool = True):
     companies = data["companies"]
     company_list = build_company_list(companies)
 
-    llm = ChatAnthropic(
-        model="claude-sonnet-4-5-20250929",
-        api_key=ANTHROPIC_API_KEY,
-        temperature=0.3,
-        max_tokens=2000,
-    )
+    llm = _get_llm(provider)
 
     print(f"Starting LLM enrichment for {len(companies)} companies...")
     print(f"Skip existing: {skip_existing}")
@@ -187,5 +205,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--force", action="store_true", help="Re-enrich all companies, even if already done")
     parser.add_argument("--batch-size", type=int, default=5, help="Save checkpoint every N companies")
+    parser.add_argument("--provider", default="openai", choices=["openai", "anthropic"], help="LLM provider")
     args = parser.parse_args()
-    run(batch_size=args.batch_size, skip_existing=not args.force)
+    run(batch_size=args.batch_size, skip_existing=not args.force, provider=args.provider)

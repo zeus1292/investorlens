@@ -38,7 +38,74 @@
         "github_stars": null,
         "developer_community_size": "medium"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 8,
+        "moat_reasoning": "Snowflake's moat is primarily built on its cloud-native architecture, which allows for seamless scalability and integration with major cloud providers. Its consumption-based pricing model and robust data sharing capabilities further enhance its competitive position, making it difficult for customers to switch once integrated.",
+        "investment_themes": [
+          "cloud_data_platforms",
+          "consumption_pricing",
+          "data_sharing",
+          "enterprise_switching_costs"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "databricks",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Both Snowflake and Databricks offer cloud-native data platforms, but Snowflake focuses more on data warehousing while Databricks emphasizes data engineering and machine learning."
+          },
+          {
+            "target_company_id": "bigquery",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Google BigQuery is a direct competitor in the cloud data warehousing space, offering similar analytics capabilities."
+          },
+          {
+            "target_company_id": "redshift",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Amazon Redshift competes with Snowflake in the cloud data warehousing market, targeting similar enterprise customers."
+          },
+          {
+            "target_company_id": "azure_synapse",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.6,
+            "reasoning": "Azure Synapse Analytics is a competitor in the cloud data platform space, offering integrated analytics services."
+          },
+          {
+            "target_company_id": "fivetran",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.5,
+            "reasoning": "Fivetran provides data integration services that complement Snowflake's data warehousing capabilities, facilitating data ingestion."
+          },
+          {
+            "target_company_id": "dbt_labs",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.5,
+            "reasoning": "dbt Labs partners with Snowflake to provide data transformation capabilities, enhancing the analytics workflow."
+          },
+          {
+            "target_company_id": "firebolt",
+            "relationship_type": "DISRUPTS",
+            "strength": 0.4,
+            "reasoning": "Firebolt is an emerging disruptor in the cloud data warehousing space, offering high-performance analytics that challenge Snowflake's position."
+          },
+          {
+            "target_company_id": "cloudera",
+            "relationship_type": "DISRUPTS",
+            "strength": 0.3,
+            "reasoning": "Cloudera's traditional data platform is being disrupted by Snowflake's cloud-native approach."
+          }
+        ],
+        "enterprise_readiness_score": 9,
+        "operational_improvement_potential": 6,
+        "financial_profile_cluster": "high_growth_cash_burning",
+        "developer_adoption_score": 8,
+        "product_maturity_score": 9,
+        "customer_switching_cost": 8,
+        "revenue_predictability": 7,
+        "market_timing_score": 9
+      }
     },
     {
       "company_id": "databricks",
@@ -61,7 +128,75 @@
         "github_stars": null,
         "developer_community_size": "large"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 8,
+        "moat_reasoning": "Databricks has a strong competitive moat due to its pioneering role in the lakehouse architecture, which combines the benefits of data lakes and data warehouses. Its deep integration with Apache Spark and a large ecosystem of partners and users further solidify its position.",
+        "investment_themes": [
+          "data_gravity",
+          "ai_infrastructure",
+          "mlops",
+          "real_time_analytics",
+          "enterprise_switching_costs"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "snowflake",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.9,
+            "reasoning": "Both Databricks and Snowflake offer cloud-based data platforms with overlapping functionalities, targeting similar enterprise customers."
+          },
+          {
+            "target_company_id": "bigquery",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Databricks and Google BigQuery both provide analytics platforms that cater to large-scale data processing needs."
+          },
+          {
+            "target_company_id": "redshift",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Amazon Redshift and Databricks compete in the cloud data warehousing and analytics space."
+          },
+          {
+            "target_company_id": "azure_synapse",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.6,
+            "reasoning": "Databricks partners with Microsoft Azure to provide integrated analytics solutions on the Azure cloud."
+          },
+          {
+            "target_company_id": "palantir",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.5,
+            "reasoning": "Both companies target large enterprises looking for advanced data analytics and AI solutions."
+          },
+          {
+            "target_company_id": "h2o_ai",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.4,
+            "reasoning": "Both focus on AI infrastructure and machine learning operations, although they approach the market differently."
+          },
+          {
+            "target_company_id": "cloudera",
+            "relationship_type": "DISRUPTS",
+            "strength": 0.6,
+            "reasoning": "Databricks' modern cloud-native approach disrupts traditional Hadoop-based platforms like Cloudera."
+          },
+          {
+            "target_company_id": "dataiku",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.5,
+            "reasoning": "Both focus on enabling data science and machine learning at scale within enterprises."
+          }
+        ],
+        "enterprise_readiness_score": 9,
+        "operational_improvement_potential": 6,
+        "financial_profile_cluster": "high_growth_cash_burning",
+        "developer_adoption_score": 8,
+        "product_maturity_score": 9,
+        "customer_switching_cost": 8,
+        "revenue_predictability": 7,
+        "market_timing_score": 9
+      }
     },
     {
       "company_id": "bigquery",
@@ -102,7 +237,69 @@
         "github_stars": null,
         "developer_community_size": "large"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 9,
+        "moat_reasoning": "Google BigQuery benefits from Google's extensive cloud infrastructure, integration with other Google Cloud services, and its serverless architecture, which provides significant scalability and ease of use. Its multi-cloud capabilities and built-in ML features further strengthen its competitive position.",
+        "investment_themes": [
+          "serverless",
+          "multi_cloud",
+          "ai_infrastructure",
+          "consumption_pricing",
+          "data_gravity"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "snowflake",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.9,
+            "reasoning": "Both companies offer cloud-native data warehousing solutions with a focus on scalability and ease of use."
+          },
+          {
+            "target_company_id": "redshift",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Amazon Redshift is a direct competitor in the cloud data warehousing space, targeting similar enterprise customers."
+          },
+          {
+            "target_company_id": "azure_synapse",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Azure Synapse Analytics competes with BigQuery in providing integrated analytics services within a cloud ecosystem."
+          },
+          {
+            "target_company_id": "databricks",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.7,
+            "reasoning": "Both target enterprises looking for advanced analytics and machine learning capabilities on cloud platforms."
+          },
+          {
+            "target_company_id": "palantir",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.6,
+            "reasoning": "Both companies focus on data analytics and AI infrastructure, albeit with different approaches and customer bases."
+          },
+          {
+            "target_company_id": "firebolt",
+            "relationship_type": "DISRUPTS",
+            "strength": 0.5,
+            "reasoning": "Firebolt aims to disrupt the cloud data warehousing market with a focus on performance and cost efficiency."
+          },
+          {
+            "target_company_id": "fivetran",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.6,
+            "reasoning": "Fivetran provides data integration services that complement BigQuery's data warehousing capabilities."
+          }
+        ],
+        "enterprise_readiness_score": 10,
+        "operational_improvement_potential": 5,
+        "financial_profile_cluster": "mature_cash_generating",
+        "developer_adoption_score": 9,
+        "product_maturity_score": 10,
+        "customer_switching_cost": 8,
+        "revenue_predictability": 9,
+        "market_timing_score": 8
+      }
     },
     {
       "company_id": "redshift",
@@ -142,7 +339,69 @@
         "github_stars": null,
         "developer_community_size": "large"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 8,
+        "moat_reasoning": "Amazon Redshift benefits from deep integration within the AWS ecosystem, providing a strong competitive advantage due to seamless interoperability with other AWS services. This integration creates high switching costs for enterprises heavily invested in AWS infrastructure.",
+        "investment_themes": [
+          "cloud_native",
+          "enterprise_switching_costs",
+          "data_gravity",
+          "consumption_pricing",
+          "real_time_analytics"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "snowflake",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.9,
+            "reasoning": "Snowflake is a major competitor in the cloud data warehouse space, offering a similar service with a focus on multi-cloud capabilities."
+          },
+          {
+            "target_company_id": "databricks",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.8,
+            "reasoning": "Both companies target large enterprises looking for scalable data processing and analytics solutions."
+          },
+          {
+            "target_company_id": "bigquery",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.85,
+            "reasoning": "Google BigQuery is a direct competitor, offering a cloud-native data warehouse solution with strong analytics capabilities."
+          },
+          {
+            "target_company_id": "azure_synapse",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Azure Synapse Analytics competes with Redshift by providing a similar integrated analytics service within the Microsoft Azure ecosystem."
+          },
+          {
+            "target_company_id": "firebolt",
+            "relationship_type": "DISRUPTS",
+            "strength": 0.6,
+            "reasoning": "Firebolt is an emerging disruptor in the cloud data warehouse market, focusing on high-performance analytics."
+          },
+          {
+            "target_company_id": "fivetran",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.7,
+            "reasoning": "Fivetran provides data integration services that complement Redshift's data warehousing capabilities."
+          },
+          {
+            "target_company_id": "dbt_labs",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.65,
+            "reasoning": "dbt Labs offers transformation tools that integrate well with Redshift, enhancing its data processing capabilities."
+          }
+        ],
+        "enterprise_readiness_score": 9,
+        "operational_improvement_potential": 5,
+        "financial_profile_cluster": "mature_cash_generating",
+        "developer_adoption_score": 7,
+        "product_maturity_score": 9,
+        "customer_switching_cost": 8,
+        "revenue_predictability": 9,
+        "market_timing_score": 7
+      }
     },
     {
       "company_id": "azure_synapse",
@@ -183,7 +442,74 @@
         "github_stars": null,
         "developer_community_size": "large"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 8,
+        "moat_reasoning": "Azure Synapse Analytics benefits from the extensive Microsoft ecosystem, including integration with Azure cloud services and tools like Power BI. This creates a strong moat due to high customer switching costs and enterprise readiness.",
+        "investment_themes": [
+          "data_gravity",
+          "enterprise_switching_costs",
+          "hybrid_cloud",
+          "real_time_analytics"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "snowflake",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Both Azure Synapse and Snowflake offer cloud-based data warehousing and analytics solutions, targeting enterprise customers."
+          },
+          {
+            "target_company_id": "databricks",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Azure Synapse and Databricks both provide big data analytics solutions, often competing for similar enterprise use cases."
+          },
+          {
+            "target_company_id": "bigquery",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Google BigQuery and Azure Synapse both offer cloud data warehousing services, competing for clients in need of scalable analytics solutions."
+          },
+          {
+            "target_company_id": "redshift",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Amazon Redshift is a direct competitor in the cloud data warehousing space, with similar features and target markets."
+          },
+          {
+            "target_company_id": "cloudera",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "Both target enterprise customers needing comprehensive data analytics solutions, although Cloudera focuses more on hybrid cloud deployments."
+          },
+          {
+            "target_company_id": "palantir",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.5,
+            "reasoning": "Both target large enterprises with complex data analytics needs, although Palantir focuses more on bespoke solutions."
+          },
+          {
+            "target_company_id": "fivetran",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.4,
+            "reasoning": "Fivetran provides data integration services that can feed into Azure Synapse for analytics purposes."
+          },
+          {
+            "target_company_id": "dbt_labs",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.4,
+            "reasoning": "dbt Labs' transformation tools can be used in conjunction with Azure Synapse for data modeling and analytics."
+          }
+        ],
+        "enterprise_readiness_score": 9,
+        "operational_improvement_potential": 6,
+        "financial_profile_cluster": "mature_cash_generating",
+        "developer_adoption_score": 7,
+        "product_maturity_score": 9,
+        "customer_switching_cost": 8,
+        "revenue_predictability": 9,
+        "market_timing_score": 8
+      }
     },
     {
       "company_id": "teradata",
@@ -224,7 +550,67 @@
         "github_stars": null,
         "developer_community_size": "small"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 7,
+        "moat_reasoning": "Teradata's moat is primarily due to its long-standing relationships with large enterprises and its reputation as a reliable data warehouse provider. The transition to hybrid cloud is an attempt to modernize and retain these clients, but the competitive landscape is intense.",
+        "investment_themes": [
+          "hybrid_cloud",
+          "enterprise_switching_costs",
+          "data_gravity"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "snowflake",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Snowflake is a leading cloud-native data platform that competes directly with Teradata's cloud offerings."
+          },
+          {
+            "target_company_id": "bigquery",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Google BigQuery offers a cloud data warehouse solution that competes with Teradata's cloud transition efforts."
+          },
+          {
+            "target_company_id": "redshift",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Amazon Redshift is a major competitor in the cloud data warehouse space, targeting similar enterprise clients."
+          },
+          {
+            "target_company_id": "azure_synapse",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.6,
+            "reasoning": "Azure Synapse Analytics competes with Teradata in providing integrated analytics services in the cloud."
+          },
+          {
+            "target_company_id": "cloudera",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.5,
+            "reasoning": "Both companies target large enterprises with data management and analytics solutions."
+          },
+          {
+            "target_company_id": "databricks",
+            "relationship_type": "DISRUPTS",
+            "strength": 0.6,
+            "reasoning": "Databricks' focus on data lakes and AI/ML disrupts traditional data warehouse models like Teradata's."
+          },
+          {
+            "target_company_id": "informatica",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.4,
+            "reasoning": "Teradata often partners with data integration companies like Informatica to enhance its data management capabilities."
+          }
+        ],
+        "enterprise_readiness_score": 9,
+        "operational_improvement_potential": 5,
+        "financial_profile_cluster": "mature_cash_generating",
+        "developer_adoption_score": 3,
+        "product_maturity_score": 8,
+        "customer_switching_cost": 8,
+        "revenue_predictability": 8,
+        "market_timing_score": 5
+      }
     },
     {
       "company_id": "cloudera",
@@ -246,7 +632,73 @@
         "github_stars": null,
         "developer_community_size": "medium"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 6,
+        "moat_reasoning": "Cloudera's moat is primarily based on its established presence in the enterprise data management space, leveraging its Hadoop heritage. Its hybrid cloud capabilities and strong enterprise relationships provide some durability, but the competitive landscape is intense with cloud-native and open-source alternatives.",
+        "investment_themes": [
+          "hybrid_cloud",
+          "enterprise_switching_costs",
+          "data_governance"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "snowflake",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Snowflake competes with Cloudera in the cloud data platform space, offering a cloud-native solution that challenges Cloudera's hybrid approach."
+          },
+          {
+            "target_company_id": "databricks",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Databricks offers a unified data analytics platform that competes with Cloudera's offerings, especially in big data and analytics."
+          },
+          {
+            "target_company_id": "teradata",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "Both Cloudera and Teradata target large enterprises with complex data management needs."
+          },
+          {
+            "target_company_id": "azure_synapse",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.6,
+            "reasoning": "Azure Synapse Analytics competes with Cloudera by providing integrated analytics services in the cloud."
+          },
+          {
+            "target_company_id": "palantir",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.5,
+            "reasoning": "Both companies focus on enterprise data analytics and management, though Palantir has a more specialized approach."
+          },
+          {
+            "target_company_id": "alation",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.4,
+            "reasoning": "Cloudera partners with data governance and cataloging companies like Alation to enhance its platform capabilities."
+          },
+          {
+            "target_company_id": "informatica",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.4,
+            "reasoning": "Informatica provides data integration solutions that complement Cloudera's data platform."
+          },
+          {
+            "target_company_id": "h2o_ai",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.4,
+            "reasoning": "Both companies are involved in AI and machine learning, focusing on enterprise applications."
+          }
+        ],
+        "enterprise_readiness_score": 8,
+        "operational_improvement_potential": 7,
+        "financial_profile_cluster": "mature_cash_generating",
+        "developer_adoption_score": 5,
+        "product_maturity_score": 7,
+        "customer_switching_cost": 7,
+        "revenue_predictability": 8,
+        "market_timing_score": 5
+      }
     },
     {
       "company_id": "motherduck",
@@ -269,7 +721,55 @@
         "github_stars": null,
         "developer_community_size": "small"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 5,
+        "moat_reasoning": "MotherDuck's moat is based on its unique serverless analytics platform leveraging DuckDB, which offers a local-first architecture. This provides differentiation but is not yet widely adopted, limiting its durability.",
+        "investment_themes": [
+          "serverless",
+          "real_time_analytics",
+          "cloud_native"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "databricks",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.6,
+            "reasoning": "Both companies offer cloud-native analytics solutions, although Databricks is more established."
+          },
+          {
+            "target_company_id": "snowflake",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.5,
+            "reasoning": "Snowflake is a major player in cloud data platforms, and MotherDuck's serverless approach offers an alternative."
+          },
+          {
+            "target_company_id": "bigquery",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.4,
+            "reasoning": "Both target cloud-based analytics, but BigQuery is more mature."
+          },
+          {
+            "target_company_id": "firebolt",
+            "relationship_type": "DISRUPTS",
+            "strength": 0.5,
+            "reasoning": "MotherDuck's serverless model could disrupt traditional cloud data warehousing approaches like Firebolt's."
+          },
+          {
+            "target_company_id": "clickhouse",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.3,
+            "reasoning": "Both focus on real-time analytics and efficient query processing."
+          }
+        ],
+        "enterprise_readiness_score": 4,
+        "operational_improvement_potential": 6,
+        "financial_profile_cluster": "early_stage_pre_revenue",
+        "developer_adoption_score": 3,
+        "product_maturity_score": 4,
+        "customer_switching_cost": 3,
+        "revenue_predictability": 2,
+        "market_timing_score": 7
+      }
     },
     {
       "company_id": "c3ai",
@@ -309,7 +809,56 @@
         "github_stars": null,
         "developer_community_size": "small"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 7,
+        "moat_reasoning": "C3 AI's moat is primarily built on its industry-specific AI solutions and strong partnerships with major enterprises in sectors like energy and defense, which create high switching costs and a specialized product offering.",
+        "investment_themes": [
+          "enterprise_switching_costs",
+          "ai_infrastructure",
+          "data_gravity",
+          "mlops"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "palantir",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Both C3 AI and Palantir offer AI solutions targeted at large enterprises and government sectors, leading to direct competition."
+          },
+          {
+            "target_company_id": "dataiku",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.7,
+            "reasoning": "C3 AI and Dataiku both target enterprise clients with AI and machine learning platforms, although C3 AI focuses more on industry-specific solutions."
+          },
+          {
+            "target_company_id": "datarobot",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.6,
+            "reasoning": "DataRobot and C3 AI both provide AI platforms for enterprises, but DataRobot focuses more on automated machine learning."
+          },
+          {
+            "target_company_id": "h2o_ai",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.5,
+            "reasoning": "Both companies are part of the AI infrastructure theme, providing platforms for enterprise AI deployment."
+          },
+          {
+            "target_company_id": "scale_ai",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.4,
+            "reasoning": "C3 AI could potentially partner with Scale AI to enhance data labeling and AI model training capabilities."
+          }
+        ],
+        "enterprise_readiness_score": 9,
+        "operational_improvement_potential": 6,
+        "financial_profile_cluster": "high_growth_cash_burning",
+        "developer_adoption_score": 4,
+        "product_maturity_score": 8,
+        "customer_switching_cost": 8,
+        "revenue_predictability": 6,
+        "market_timing_score": 7
+      }
     },
     {
       "company_id": "palantir",
@@ -350,7 +899,56 @@
         "github_stars": null,
         "developer_community_size": "small"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 8,
+        "moat_reasoning": "Palantir's moat is primarily driven by its deep entrenchment in government contracts, particularly with the U.S. government, and its specialized data integration and analytics capabilities. The complexity and customization of its solutions create high switching costs for its clients.",
+        "investment_themes": [
+          "data_integration",
+          "enterprise_switching_costs",
+          "ai_infrastructure",
+          "government_contracts"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "c3ai",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Both companies offer AI-driven analytics platforms targeting large enterprises and government sectors."
+          },
+          {
+            "target_company_id": "dataiku",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "Dataiku and Palantir both target enterprise customers seeking advanced analytics and AI solutions."
+          },
+          {
+            "target_company_id": "palantir",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.8,
+            "reasoning": "Palantir shares themes like AI infrastructure and data integration with other AI/ML platform companies."
+          },
+          {
+            "target_company_id": "alation",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.5,
+            "reasoning": "Palantir may partner with data governance companies like Alation to enhance its data management capabilities."
+          },
+          {
+            "target_company_id": "h2o_ai",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.6,
+            "reasoning": "H2O.ai and Palantir both provide AI and machine learning platforms for enterprise use cases."
+          }
+        ],
+        "enterprise_readiness_score": 9,
+        "operational_improvement_potential": 5,
+        "financial_profile_cluster": "profitable_growth",
+        "developer_adoption_score": 4,
+        "product_maturity_score": 8,
+        "customer_switching_cost": 9,
+        "revenue_predictability": 8,
+        "market_timing_score": 7
+      }
     },
     {
       "company_id": "dataiku",
@@ -374,7 +972,55 @@
         "github_stars": null,
         "developer_community_size": "medium"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 7,
+        "moat_reasoning": "Dataiku's moat is built on its comprehensive end-to-end ML platform that encourages collaboration among data scientists, analysts, and business users. Its strong presence in Europe and focus on collaborative data science further enhance its competitive position.",
+        "investment_themes": [
+          "ai_infrastructure",
+          "enterprise_switching_costs",
+          "mlops"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "datarobot",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Both Dataiku and DataRobot offer end-to-end machine learning platforms targeting enterprises looking to scale AI initiatives."
+          },
+          {
+            "target_company_id": "c3ai",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "C3 AI and Dataiku both target large enterprises with their AI and machine learning platforms, focusing on operationalizing AI."
+          },
+          {
+            "target_company_id": "palantir",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.5,
+            "reasoning": "Both companies emphasize AI infrastructure and data-driven decision-making for enterprises."
+          },
+          {
+            "target_company_id": "h2o_ai",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.6,
+            "reasoning": "H2O.ai and Dataiku both provide platforms for building and deploying machine learning models, targeting similar customer bases."
+          },
+          {
+            "target_company_id": "databricks",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.4,
+            "reasoning": "Dataiku can integrate with Databricks to enhance data processing and machine learning capabilities for joint customers."
+          }
+        ],
+        "enterprise_readiness_score": 8,
+        "operational_improvement_potential": 6,
+        "financial_profile_cluster": "growth_approaching_profitability",
+        "developer_adoption_score": 6,
+        "product_maturity_score": 8,
+        "customer_switching_cost": 7,
+        "revenue_predictability": 7,
+        "market_timing_score": 8
+      }
     },
     {
       "company_id": "datarobot",
@@ -398,7 +1044,61 @@
         "github_stars": null,
         "developer_community_size": "medium"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 7,
+        "moat_reasoning": "DataRobot's moat is primarily based on its early mover advantage in the AutoML space and its comprehensive platform for automated model building and monitoring. The platform's ease of use and enterprise focus create switching costs for customers who have integrated it into their workflows.",
+        "investment_themes": [
+          "ai_infrastructure",
+          "mlops",
+          "enterprise_switching_costs"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "h2o_ai",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "H2O.ai also offers AutoML solutions and competes directly with DataRobot in the enterprise AI deployment space."
+          },
+          {
+            "target_company_id": "dataiku",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Dataiku provides a collaborative data science platform that includes AutoML capabilities, competing with DataRobot for enterprise customers."
+          },
+          {
+            "target_company_id": "palantir",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "Both companies target large enterprises looking to leverage AI for operational improvements."
+          },
+          {
+            "target_company_id": "c3ai",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "C3 AI and DataRobot both focus on providing AI solutions to enterprise customers, though C3 AI has a broader application focus."
+          },
+          {
+            "target_company_id": "wandb",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.5,
+            "reasoning": "Both companies are part of the broader MLOps and AI infrastructure investment theme."
+          },
+          {
+            "target_company_id": "scale_ai",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.4,
+            "reasoning": "Scale AI and DataRobot share a focus on AI infrastructure, though Scale AI is more focused on data labeling and preparation."
+          }
+        ],
+        "enterprise_readiness_score": 8,
+        "operational_improvement_potential": 6,
+        "financial_profile_cluster": "growth_approaching_profitability",
+        "developer_adoption_score": 5,
+        "product_maturity_score": 7,
+        "customer_switching_cost": 8,
+        "revenue_predictability": 7,
+        "market_timing_score": 6
+      }
     },
     {
       "company_id": "h2o_ai",
@@ -421,7 +1121,56 @@
         "github_stars": 6800,
         "developer_community_size": "medium"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 7,
+        "moat_reasoning": "H2O.ai's moat is primarily built on its open-source platform, which has strong community support and enterprise features like Driverless AI. This combination of open-source flexibility and enterprise-grade tools creates a competitive advantage.",
+        "investment_themes": [
+          "open_source",
+          "ai_infrastructure",
+          "mlops",
+          "enterprise_switching_costs"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "dataiku",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Both H2O.ai and Dataiku offer platforms for enterprise AI and machine learning, targeting similar customer segments with a focus on ease of use and automation."
+          },
+          {
+            "target_company_id": "datarobot",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "DataRobot and H2O.ai both provide automated machine learning solutions, directly competing in the enterprise AI space."
+          },
+          {
+            "target_company_id": "palantir",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "Both companies target large enterprises looking to leverage AI for data-driven decision-making."
+          },
+          {
+            "target_company_id": "huggingface",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.5,
+            "reasoning": "Both companies are part of the AI infrastructure theme, focusing on providing tools and platforms for machine learning development."
+          },
+          {
+            "target_company_id": "wandb",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.4,
+            "reasoning": "H2O.ai and Weights & Biases can complement each other, with H2O.ai providing the machine learning platform and W&B offering experiment tracking and model management."
+          }
+        ],
+        "enterprise_readiness_score": 8,
+        "operational_improvement_potential": 6,
+        "financial_profile_cluster": "growth_approaching_profitability",
+        "developer_adoption_score": 7,
+        "product_maturity_score": 8,
+        "customer_switching_cost": 7,
+        "revenue_predictability": 6,
+        "market_timing_score": 8
+      }
     },
     {
       "company_id": "scale_ai",
@@ -445,7 +1194,73 @@
         "github_stars": null,
         "developer_community_size": "medium"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 7,
+        "moat_reasoning": "Scale AI has established a strong position in the data labeling and ML data infrastructure space, particularly with government and enterprise clients. Its moat is driven by the complexity and scale of its operations, as well as its reputation for high-quality data services.",
+        "investment_themes": [
+          "ai_infrastructure",
+          "data_operations",
+          "enterprise_ai"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "palantir",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Both companies target government and enterprise clients with AI and data solutions, although Palantir focuses more on analytics and decision-making platforms."
+          },
+          {
+            "target_company_id": "datarobot",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "Both companies serve enterprise clients looking to leverage AI, though DataRobot focuses more on automated machine learning."
+          },
+          {
+            "target_company_id": "huggingface",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.5,
+            "reasoning": "Both are part of the AI infrastructure landscape, although Hugging Face is more focused on model development and deployment."
+          },
+          {
+            "target_company_id": "wandb",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.4,
+            "reasoning": "Scale AI's data infrastructure can complement Weights & Biases' experiment tracking and model management tools."
+          },
+          {
+            "target_company_id": "c3ai",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.6,
+            "reasoning": "Both companies provide AI solutions to enterprises, though C3 AI offers a broader range of AI applications."
+          },
+          {
+            "target_company_id": "dataiku",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.5,
+            "reasoning": "Both companies target enterprises looking to implement AI solutions, but Dataiku focuses more on collaborative data science."
+          },
+          {
+            "target_company_id": "informatica",
+            "relationship_type": "SUPPLIES_TO",
+            "strength": 0.3,
+            "reasoning": "Scale AI's data labeling services could be used by Informatica's data integration and management solutions."
+          },
+          {
+            "target_company_id": "alation",
+            "relationship_type": "SUPPLIES_TO",
+            "strength": 0.3,
+            "reasoning": "Scale AI's data operations could support Alation's data cataloging and governance solutions."
+          }
+        ],
+        "enterprise_readiness_score": 8,
+        "operational_improvement_potential": 6,
+        "financial_profile_cluster": "high_growth_cash_burning",
+        "developer_adoption_score": 6,
+        "product_maturity_score": 7,
+        "customer_switching_cost": 7,
+        "revenue_predictability": 6,
+        "market_timing_score": 8
+      }
     },
     {
       "company_id": "wandb",
@@ -469,7 +1284,62 @@
         "github_stars": 8500,
         "developer_community_size": "large"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 7,
+        "moat_reasoning": "Weights & Biases has established a strong moat in the MLOps space through its developer-focused tools and strong community engagement. Its experiment tracking and model versioning features are well-regarded, and the platform's integration with popular ML frameworks enhances its stickiness.",
+        "investment_themes": [
+          "mlops",
+          "developer_led_growth",
+          "ai_infrastructure",
+          "open_source"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "h2o_ai",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Both companies offer MLOps platforms with a focus on model management and experiment tracking."
+          },
+          {
+            "target_company_id": "datarobot",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "Both target enterprises looking to streamline machine learning operations, though DataRobot focuses more on automated machine learning."
+          },
+          {
+            "target_company_id": "huggingface",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.5,
+            "reasoning": "Both companies focus on developer tools and community-driven growth in the AI/ML space."
+          },
+          {
+            "target_company_id": "palantir",
+            "relationship_type": "DISRUPTS",
+            "strength": 0.4,
+            "reasoning": "Weights & Biases' developer-centric approach contrasts with Palantir's enterprise-heavy solutions, offering a more flexible alternative for ML practitioners."
+          },
+          {
+            "target_company_id": "scale_ai",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.3,
+            "reasoning": "Potential for collaboration in data labeling and model training workflows."
+          },
+          {
+            "target_company_id": "dataiku",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.6,
+            "reasoning": "Both offer platforms for managing machine learning workflows, though Dataiku also emphasizes data preparation."
+          }
+        ],
+        "enterprise_readiness_score": 6,
+        "operational_improvement_potential": 7,
+        "financial_profile_cluster": "high_growth_cash_burning",
+        "developer_adoption_score": 8,
+        "product_maturity_score": 7,
+        "customer_switching_cost": 6,
+        "revenue_predictability": 5,
+        "market_timing_score": 8
+      }
     },
     {
       "company_id": "huggingface",
@@ -493,7 +1363,62 @@
         "github_stars": 130000,
         "developer_community_size": "very_large"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 8,
+        "moat_reasoning": "Hugging Face has established a strong moat through its open-source model hub, which has become the de facto standard for sharing and using AI models, especially transformers. Its large and active community contributes to its network effects, making it difficult for competitors to replicate.",
+        "investment_themes": [
+          "open_source",
+          "ai_infrastructure",
+          "developer_led_growth",
+          "mlops"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "wandb",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.7,
+            "reasoning": "Hugging Face and Weights & Biases often collaborate to provide integrated solutions for model training and tracking."
+          },
+          {
+            "target_company_id": "c3ai",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.5,
+            "reasoning": "Both companies provide AI solutions, but Hugging Face focuses more on open-source models while C3 AI targets enterprise applications."
+          },
+          {
+            "target_company_id": "palantir",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.4,
+            "reasoning": "Both companies target organizations looking to leverage AI, but Palantir focuses on data integration and analytics while Hugging Face focuses on model deployment."
+          },
+          {
+            "target_company_id": "dataiku",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.6,
+            "reasoning": "Both companies are involved in AI and ML platforms, with a focus on enabling users to build and deploy models."
+          },
+          {
+            "target_company_id": "h2o_ai",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.6,
+            "reasoning": "Hugging Face and H2O.ai both provide platforms for deploying machine learning models, though Hugging Face has a stronger focus on open-source and transformers."
+          },
+          {
+            "target_company_id": "scale_ai",
+            "relationship_type": "DISRUPTS",
+            "strength": 0.5,
+            "reasoning": "Hugging Face's open-source approach and community-driven model hub challenge traditional proprietary AI model providers like Scale AI."
+          }
+        ],
+        "enterprise_readiness_score": 6,
+        "operational_improvement_potential": 5,
+        "financial_profile_cluster": "high_growth_cash_burning",
+        "developer_adoption_score": 9,
+        "product_maturity_score": 7,
+        "customer_switching_cost": 6,
+        "revenue_predictability": 5,
+        "market_timing_score": 9
+      }
     },
     {
       "company_id": "fivetran",
@@ -517,7 +1442,61 @@
         "github_stars": null,
         "developer_community_size": "medium"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 7,
+        "moat_reasoning": "Fivetran's moat is built on its extensive library of 300+ pre-built connectors, which significantly reduces the time and effort required for data integration. This creates high switching costs for customers who rely on these connectors for seamless data operations.",
+        "investment_themes": [
+          "data_gravity",
+          "consumption_pricing",
+          "developer_led_growth"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "airbyte",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Airbyte is a direct competitor in the data integration space, offering open-source alternatives to Fivetran's connectors."
+          },
+          {
+            "target_company_id": "dbt_labs",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.7,
+            "reasoning": "Fivetran often partners with dbt Labs to provide a seamless ELT workflow, where Fivetran handles data extraction and loading, and dbt handles transformation."
+          },
+          {
+            "target_company_id": "informatica",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.6,
+            "reasoning": "Informatica is a legacy player in the data integration market, competing with Fivetran's modern, automated approach."
+          },
+          {
+            "target_company_id": "talend",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.6,
+            "reasoning": "Talend offers data integration solutions that compete with Fivetran's automated ELT platform."
+          },
+          {
+            "target_company_id": "matillion",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.7,
+            "reasoning": "Both Fivetran and Matillion target enterprises looking for cloud-based data integration solutions."
+          },
+          {
+            "target_company_id": "snowflake",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.8,
+            "reasoning": "Fivetran is often used in conjunction with Snowflake as a data warehouse, providing seamless data integration into Snowflake's platform."
+          }
+        ],
+        "enterprise_readiness_score": 8,
+        "operational_improvement_potential": 6,
+        "financial_profile_cluster": "high_growth_cash_burning",
+        "developer_adoption_score": 7,
+        "product_maturity_score": 8,
+        "customer_switching_cost": 8,
+        "revenue_predictability": 7,
+        "market_timing_score": 8
+      }
     },
     {
       "company_id": "dbt_labs",
@@ -541,7 +1520,61 @@
         "github_stars": 9500,
         "developer_community_size": "very_large"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 7,
+        "moat_reasoning": "dbt Labs has established itself as a leader in the analytics engineering space, with a strong community-driven approach and a widely adopted open-source tool. Its moat is bolstered by the network effects of its large and active developer community, as well as the increasing adoption of analytics engineering practices.",
+        "investment_themes": [
+          "developer_led_growth",
+          "data_governance",
+          "open_source"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "fivetran",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.8,
+            "reasoning": "dbt Labs often partners with Fivetran to provide end-to-end data integration and transformation solutions."
+          },
+          {
+            "target_company_id": "snowflake",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.7,
+            "reasoning": "dbt Labs integrates closely with Snowflake, allowing users to transform data directly within the Snowflake environment."
+          },
+          {
+            "target_company_id": "airbyte",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.6,
+            "reasoning": "While dbt Labs focuses on transformation, Airbyte offers complementary ETL capabilities, leading to some competitive overlap."
+          },
+          {
+            "target_company_id": "matillion",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.5,
+            "reasoning": "Both dbt Labs and Matillion offer data transformation solutions, though they target slightly different user bases."
+          },
+          {
+            "target_company_id": "informatica",
+            "relationship_type": "DISRUPTS",
+            "strength": 0.4,
+            "reasoning": "dbt Labs disrupts traditional ETL tools like Informatica by offering a modern, SQL-based transformation approach."
+          },
+          {
+            "target_company_id": "talend",
+            "relationship_type": "DISRUPTS",
+            "strength": 0.4,
+            "reasoning": "dbt Labs' modern approach to data transformation poses a challenge to legacy ETL providers like Talend."
+          }
+        ],
+        "enterprise_readiness_score": 8,
+        "operational_improvement_potential": 6,
+        "financial_profile_cluster": "high_growth_cash_burning",
+        "developer_adoption_score": 9,
+        "product_maturity_score": 7,
+        "customer_switching_cost": 6,
+        "revenue_predictability": 7,
+        "market_timing_score": 8
+      }
     },
     {
       "company_id": "airbyte",
@@ -564,7 +1597,61 @@
         "github_stars": 15000,
         "developer_community_size": "large"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 6,
+        "moat_reasoning": "Airbyte's moat is primarily built on its open-source model and large number of connectors, which attract a strong developer community and encourage contributions. However, the open-source nature also means lower switching costs compared to proprietary solutions.",
+        "investment_themes": [
+          "open_source",
+          "developer_led_growth",
+          "data_integration"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "fivetran",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Both Airbyte and Fivetran offer data integration solutions, but Airbyte's open-source approach differentiates it."
+          },
+          {
+            "target_company_id": "dbt_labs",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "Airbyte and dbt Labs both focus on the ELT process, targeting data teams looking to streamline data workflows."
+          },
+          {
+            "target_company_id": "matillion",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Airbyte and Matillion both provide ETL/ELT solutions, competing for similar customer bases."
+          },
+          {
+            "target_company_id": "informatica",
+            "relationship_type": "DISRUPTS",
+            "strength": 0.5,
+            "reasoning": "Airbyte's open-source model and flexibility pose a disruptive threat to traditional ETL providers like Informatica."
+          },
+          {
+            "target_company_id": "talend",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.6,
+            "reasoning": "Both Airbyte and Talend leverage open-source models to drive adoption in the data integration space."
+          },
+          {
+            "target_company_id": "snowflake",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.4,
+            "reasoning": "Airbyte integrates with Snowflake as a destination, facilitating data movement into Snowflake's platform."
+          }
+        ],
+        "enterprise_readiness_score": 5,
+        "operational_improvement_potential": 7,
+        "financial_profile_cluster": "high_growth_cash_burning",
+        "developer_adoption_score": 8,
+        "product_maturity_score": 6,
+        "customer_switching_cost": 4,
+        "revenue_predictability": 5,
+        "market_timing_score": 8
+      }
     },
     {
       "company_id": "informatica",
@@ -605,7 +1692,61 @@
         "github_stars": null,
         "developer_community_size": "medium"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 7,
+        "moat_reasoning": "Informatica's moat is primarily due to its longstanding reputation and established relationships with large enterprises for data integration and governance solutions. Its comprehensive suite of tools and cloud modernization efforts further strengthen its position.",
+        "investment_themes": [
+          "data_governance",
+          "enterprise_switching_costs",
+          "hybrid_cloud"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "talend",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Talend is a direct competitor in the data integration and ETL space, offering similar solutions."
+          },
+          {
+            "target_company_id": "fivetran",
+            "relationship_type": "DISRUPTS",
+            "strength": 0.7,
+            "reasoning": "Fivetran's automated data integration platform challenges traditional ETL processes, impacting Informatica's legacy offerings."
+          },
+          {
+            "target_company_id": "dbt_labs",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "Both companies target enterprise customers looking for robust data transformation and integration solutions."
+          },
+          {
+            "target_company_id": "alation",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.5,
+            "reasoning": "Informatica partners with Alation to enhance data governance and cataloging capabilities."
+          },
+          {
+            "target_company_id": "cloudera",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.6,
+            "reasoning": "Both companies focus on data management and governance in hybrid cloud environments."
+          },
+          {
+            "target_company_id": "snowflake",
+            "relationship_type": "SUPPLIES_TO",
+            "strength": 0.4,
+            "reasoning": "Informatica provides data integration solutions that complement Snowflake's data warehousing capabilities."
+          }
+        ],
+        "enterprise_readiness_score": 9,
+        "operational_improvement_potential": 5,
+        "financial_profile_cluster": "mature_cash_generating",
+        "developer_adoption_score": 5,
+        "product_maturity_score": 8,
+        "customer_switching_cost": 8,
+        "revenue_predictability": 8,
+        "market_timing_score": 6
+      }
     },
     {
       "company_id": "talend",
@@ -627,7 +1768,67 @@
         "github_stars": null,
         "developer_community_size": "medium"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 6,
+        "moat_reasoning": "Talend's moat is moderately durable due to its established presence in the data integration market and its open-source heritage, which fosters community engagement and trust. However, the competitive landscape is intense, with numerous players offering similar capabilities.",
+        "investment_themes": [
+          "data_integration",
+          "open_source",
+          "enterprise_switching_costs"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "informatica",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Both Talend and Informatica are key players in the data integration space, offering similar ETL and data quality solutions."
+          },
+          {
+            "target_company_id": "fivetran",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Fivetran provides automated data integration solutions, competing directly with Talend's offerings."
+          },
+          {
+            "target_company_id": "dbt_labs",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "Both companies target data teams looking to streamline data transformation and integration processes."
+          },
+          {
+            "target_company_id": "matillion",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.6,
+            "reasoning": "Matillion offers cloud-native data integration tools that compete with Talend's solutions."
+          },
+          {
+            "target_company_id": "qlik",
+            "relationship_type": "ACQUIRED",
+            "strength": 1.0,
+            "reasoning": "Talend was acquired by Qlik, indicating a strong partnership and integration between their product offerings."
+          },
+          {
+            "target_company_id": "airbyte",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.5,
+            "reasoning": "Both Talend and Airbyte focus on data integration with an emphasis on open-source solutions."
+          },
+          {
+            "target_company_id": "cloudera",
+            "relationship_type": "DISRUPTS",
+            "strength": 0.4,
+            "reasoning": "Talend's open-source approach and cloud capabilities can disrupt traditional data management solutions like those offered by Cloudera."
+          }
+        ],
+        "enterprise_readiness_score": 8,
+        "operational_improvement_potential": 5,
+        "financial_profile_cluster": "mature_cash_generating",
+        "developer_adoption_score": 6,
+        "product_maturity_score": 7,
+        "customer_switching_cost": 7,
+        "revenue_predictability": 8,
+        "market_timing_score": 6
+      }
     },
     {
       "company_id": "matillion",
@@ -650,7 +1851,61 @@
         "github_stars": null,
         "developer_community_size": "small"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 6,
+        "moat_reasoning": "Matillion's moat is primarily based on its cloud-native architecture and integration with major cloud data warehouses like Snowflake and BigQuery. This specialization allows it to offer optimized ETL processes for these platforms, creating a niche advantage. However, the ETL space is highly competitive with low switching costs, which limits the moat's durability.",
+        "investment_themes": [
+          "cloud_data_integration",
+          "consumption_pricing",
+          "enterprise_switching_costs"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "fivetran",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Both Matillion and Fivetran offer ETL solutions optimized for cloud data warehouses, targeting similar customer bases."
+          },
+          {
+            "target_company_id": "dbt_labs",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.7,
+            "reasoning": "Matillion and dbt Labs both focus on data transformation in the cloud, although dbt Labs is more focused on data modeling."
+          },
+          {
+            "target_company_id": "snowflake",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.9,
+            "reasoning": "Matillion is designed to work seamlessly with Snowflake, providing ETL solutions that enhance Snowflake's data processing capabilities."
+          },
+          {
+            "target_company_id": "bigquery",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.9,
+            "reasoning": "Matillion's ETL platform is optimized for Google BigQuery, facilitating data integration and transformation."
+          },
+          {
+            "target_company_id": "informatica",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.6,
+            "reasoning": "Informatica offers a broad range of data integration solutions, including cloud-native ETL, competing with Matillion in the cloud data integration space."
+          },
+          {
+            "target_company_id": "talend",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Talend offers cloud and on-premise data integration solutions, competing with Matillion in the ETL market."
+          }
+        ],
+        "enterprise_readiness_score": 7,
+        "operational_improvement_potential": 6,
+        "financial_profile_cluster": "growth_approaching_profitability",
+        "developer_adoption_score": 5,
+        "product_maturity_score": 7,
+        "customer_switching_cost": 5,
+        "revenue_predictability": 6,
+        "market_timing_score": 8
+      }
     },
     {
       "company_id": "monte_carlo",
@@ -673,7 +1928,55 @@
         "github_stars": null,
         "developer_community_size": "medium"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 7,
+        "moat_reasoning": "Monte Carlo's moat is built on its pioneering status in data observability, a growing niche within data governance. Its automated data reliability monitoring and incident management solutions are critical for enterprises managing complex data ecosystems, providing a strong value proposition.",
+        "investment_themes": [
+          "data_governance",
+          "ai_infrastructure",
+          "enterprise_switching_costs"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "atlan",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Both companies offer data observability and governance solutions, targeting similar enterprise customers."
+          },
+          {
+            "target_company_id": "alation",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "Alation and Monte Carlo both focus on data governance, though Alation is more catalog-focused."
+          },
+          {
+            "target_company_id": "great_expectations",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.5,
+            "reasoning": "Great Expectations and Monte Carlo both emphasize data quality and reliability, though with different approaches."
+          },
+          {
+            "target_company_id": "collibra",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.5,
+            "reasoning": "Collibra offers comprehensive data governance solutions, overlapping with Monte Carlo's observability focus."
+          },
+          {
+            "target_company_id": "databricks",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.4,
+            "reasoning": "Monte Carlo can integrate with platforms like Databricks to enhance data reliability and observability."
+          }
+        ],
+        "enterprise_readiness_score": 8,
+        "operational_improvement_potential": 6,
+        "financial_profile_cluster": "growth_approaching_profitability",
+        "developer_adoption_score": 6,
+        "product_maturity_score": 7,
+        "customer_switching_cost": 6,
+        "revenue_predictability": 7,
+        "market_timing_score": 8
+      }
     },
     {
       "company_id": "atlan",
@@ -696,7 +1999,61 @@
         "github_stars": null,
         "developer_community_size": "medium"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 7,
+        "moat_reasoning": "Atlan's moat is built on its active metadata platform and collaborative features that enhance data team productivity. The integration capabilities with various data tools and platforms also strengthen its position.",
+        "investment_themes": [
+          "data_governance",
+          "collaborative_tools",
+          "enterprise_switching_costs"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "alation",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Both Atlan and Alation offer data catalog and metadata management solutions, targeting similar customer bases."
+          },
+          {
+            "target_company_id": "collibra",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Collibra and Atlan both provide data governance and cataloging solutions, competing for enterprise clients."
+          },
+          {
+            "target_company_id": "monte_carlo",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "Both companies focus on data observability and governance, though Monte Carlo emphasizes data reliability."
+          },
+          {
+            "target_company_id": "snowflake",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.5,
+            "reasoning": "Atlan integrates with Snowflake to provide enhanced metadata management and collaboration for Snowflake users."
+          },
+          {
+            "target_company_id": "databricks",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.5,
+            "reasoning": "Atlan collaborates with Databricks to offer seamless data cataloging and governance solutions."
+          },
+          {
+            "target_company_id": "talend",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.4,
+            "reasoning": "Both companies focus on data integration and governance, although Talend is more focused on ETL processes."
+          }
+        ],
+        "enterprise_readiness_score": 8,
+        "operational_improvement_potential": 6,
+        "financial_profile_cluster": "growth_approaching_profitability",
+        "developer_adoption_score": 6,
+        "product_maturity_score": 7,
+        "customer_switching_cost": 7,
+        "revenue_predictability": 6,
+        "market_timing_score": 8
+      }
     },
     {
       "company_id": "alation",
@@ -719,7 +2076,55 @@
         "github_stars": null,
         "developer_community_size": "small"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 7,
+        "moat_reasoning": "Alation's moat is built on its strong focus on data cataloging and governance, which are critical components for enterprises managing large datasets. Its use of machine learning for data discovery enhances its product differentiation. The company's established customer base and integration capabilities with other data tools further strengthen its moat.",
+        "investment_themes": [
+          "data_governance",
+          "enterprise_switching_costs",
+          "ai_infrastructure"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "collibra",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Both Alation and Collibra offer data governance and cataloging solutions, targeting similar enterprise customers."
+          },
+          {
+            "target_company_id": "atlan",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Atlan and Alation both provide data cataloging and governance solutions, often competing for the same customer base."
+          },
+          {
+            "target_company_id": "monte_carlo",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "Monte Carlo and Alation both focus on data observability and governance, addressing similar enterprise needs."
+          },
+          {
+            "target_company_id": "snowflake",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.5,
+            "reasoning": "Alation integrates with Snowflake to enhance data cataloging and governance capabilities for Snowflake users."
+          },
+          {
+            "target_company_id": "databricks",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.5,
+            "reasoning": "Alation partners with Databricks to provide data governance solutions that complement Databricks' data processing capabilities."
+          }
+        ],
+        "enterprise_readiness_score": 8,
+        "operational_improvement_potential": 6,
+        "financial_profile_cluster": "growth_approaching_profitability",
+        "developer_adoption_score": 4,
+        "product_maturity_score": 8,
+        "customer_switching_cost": 7,
+        "revenue_predictability": 7,
+        "market_timing_score": 8
+      }
     },
     {
       "company_id": "great_expectations",
@@ -742,7 +2147,55 @@
         "github_stars": 10000,
         "developer_community_size": "large"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 6,
+        "moat_reasoning": "Great Expectations has a strong moat in the data quality space due to its open-source nature and large developer community, which provides a network effect. However, the moat is not extremely durable as other competitors can replicate open-source models.",
+        "investment_themes": [
+          "open_source",
+          "data_governance",
+          "developer_led_growth"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "monte_carlo",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Both companies focus on data observability and quality, targeting similar customer needs."
+          },
+          {
+            "target_company_id": "atlan",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "Atlan and Great Expectations both target data governance and observability, appealing to data teams."
+          },
+          {
+            "target_company_id": "alation",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.5,
+            "reasoning": "Both focus on data governance and quality, though Alation leans more towards data cataloging."
+          },
+          {
+            "target_company_id": "dbt_labs",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.4,
+            "reasoning": "Great Expectations can integrate with dbt Labs to enhance data quality checks within data transformation workflows."
+          },
+          {
+            "target_company_id": "collibra",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.5,
+            "reasoning": "Collibra and Great Expectations both operate in the data governance space, though Collibra is more enterprise-focused."
+          }
+        ],
+        "enterprise_readiness_score": 5,
+        "operational_improvement_potential": 6,
+        "financial_profile_cluster": "early_stage_pre_revenue",
+        "developer_adoption_score": 8,
+        "product_maturity_score": 6,
+        "customer_switching_cost": 4,
+        "revenue_predictability": 3,
+        "market_timing_score": 7
+      }
     },
     {
       "company_id": "collibra",
@@ -766,7 +2219,61 @@
         "github_stars": null,
         "developer_community_size": "small"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 7,
+        "moat_reasoning": "Collibra's moat is primarily due to its strong position in regulated industries where data governance is critical. Its comprehensive platform for data cataloging and governance creates high switching costs for enterprises that rely on its services for compliance and data management.",
+        "investment_themes": [
+          "data_governance",
+          "enterprise_switching_costs",
+          "ai_infrastructure"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "atlan",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Both Collibra and Atlan offer data governance and cataloging solutions, targeting similar enterprise customers."
+          },
+          {
+            "target_company_id": "alation",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.9,
+            "reasoning": "Alation is a direct competitor in the data catalog and governance space, serving similar market needs."
+          },
+          {
+            "target_company_id": "monte_carlo",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "While Monte Carlo focuses more on data observability, both companies target enterprises needing robust data management solutions."
+          },
+          {
+            "target_company_id": "informatica",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.7,
+            "reasoning": "Both companies focus on data governance and integration, although Informatica has a broader data management suite."
+          },
+          {
+            "target_company_id": "talend",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.5,
+            "reasoning": "Collibra and Talend can complement each other in data integration and governance solutions."
+          },
+          {
+            "target_company_id": "snowflake",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.4,
+            "reasoning": "Collibra partners with Snowflake to enhance data governance capabilities for Snowflake's data cloud."
+          }
+        ],
+        "enterprise_readiness_score": 9,
+        "operational_improvement_potential": 6,
+        "financial_profile_cluster": "growth_approaching_profitability",
+        "developer_adoption_score": 4,
+        "product_maturity_score": 8,
+        "customer_switching_cost": 8,
+        "revenue_predictability": 7,
+        "market_timing_score": 8
+      }
     },
     {
       "company_id": "pinecone",
@@ -790,7 +2297,55 @@
         "github_stars": null,
         "developer_community_size": "large"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 7,
+        "moat_reasoning": "Pinecone's moat is built on its specialization in vector databases, which are crucial for AI-driven semantic search and retrieval. This niche focus, combined with a managed service offering, creates a barrier for new entrants who need to develop similar specialized technology and infrastructure.",
+        "investment_themes": [
+          "ai_infrastructure",
+          "vector_search",
+          "developer_led_growth"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "weaviate",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Both Pinecone and Weaviate offer vector database solutions aimed at AI applications, making them direct competitors in the vector AI infrastructure space."
+          },
+          {
+            "target_company_id": "zilliz",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Zilliz, through its Milvus project, competes with Pinecone in providing vector database solutions for AI and machine learning applications."
+          },
+          {
+            "target_company_id": "chroma",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.6,
+            "reasoning": "Chroma is another player in the vector database market, competing with Pinecone in the AI infrastructure space."
+          },
+          {
+            "target_company_id": "databricks",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.5,
+            "reasoning": "Databricks, while broader in scope, targets AI and machine learning applications, overlapping with Pinecone's focus on AI-driven semantic search."
+          },
+          {
+            "target_company_id": "huggingface",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.4,
+            "reasoning": "Pinecone and Hugging Face can partner to enhance AI model deployment and semantic search capabilities, leveraging each other's strengths in AI infrastructure."
+          }
+        ],
+        "enterprise_readiness_score": 6,
+        "operational_improvement_potential": 5,
+        "financial_profile_cluster": "high_growth_cash_burning",
+        "developer_adoption_score": 8,
+        "product_maturity_score": 6,
+        "customer_switching_cost": 5,
+        "revenue_predictability": 4,
+        "market_timing_score": 9
+      }
     },
     {
       "company_id": "weaviate",
@@ -813,7 +2368,56 @@
         "github_stars": 11000,
         "developer_community_size": "large"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 6,
+        "moat_reasoning": "Weaviate's moat is built on its open-source model and its hybrid search capabilities, which are attractive to developers looking for flexibility and customization. However, the open-source nature also means lower switching costs compared to proprietary solutions.",
+        "investment_themes": [
+          "open_source",
+          "vector_search",
+          "developer_led_growth",
+          "ai_infrastructure"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "pinecone",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Both Pinecone and Weaviate offer vector databases, targeting similar use cases in AI and machine learning applications."
+          },
+          {
+            "target_company_id": "zilliz",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Zilliz and Weaviate both focus on vector databases with open-source offerings, competing for similar developer communities."
+          },
+          {
+            "target_company_id": "chroma",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "Chroma and Weaviate both target the vector AI infrastructure segment, appealing to developers and businesses needing vector search capabilities."
+          },
+          {
+            "target_company_id": "huggingface",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.5,
+            "reasoning": "Weaviate can integrate with Hugging Face models to enhance its AI capabilities, making them potential partners in AI infrastructure."
+          },
+          {
+            "target_company_id": "supabase",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.4,
+            "reasoning": "Both Weaviate and Supabase are open-source and focus on developer-led growth, appealing to similar developer communities."
+          }
+        ],
+        "enterprise_readiness_score": 5,
+        "operational_improvement_potential": 7,
+        "financial_profile_cluster": "high_growth_cash_burning",
+        "developer_adoption_score": 8,
+        "product_maturity_score": 6,
+        "customer_switching_cost": 4,
+        "revenue_predictability": 5,
+        "market_timing_score": 8
+      }
     },
     {
       "company_id": "chroma",
@@ -836,7 +2440,62 @@
         "github_stars": 14000,
         "developer_community_size": "large"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 5,
+        "moat_reasoning": "Chroma's moat is primarily based on its open-source nature and developer-friendly approach, which fosters a strong community and encourages adoption. However, the open-source model can be easily replicated by competitors, limiting the durability of its moat.",
+        "investment_themes": [
+          "open_source",
+          "developer_led_growth",
+          "vector_search",
+          "ai_infrastructure"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "pinecone",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Both Chroma and Pinecone offer vector database solutions targeting similar use cases in AI and machine learning applications."
+          },
+          {
+            "target_company_id": "weaviate",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Weaviate and Chroma both provide vector search capabilities and target developers building AI applications."
+          },
+          {
+            "target_company_id": "zilliz",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.6,
+            "reasoning": "Zilliz, through Milvus, competes with Chroma in the vector database space, offering similar functionalities."
+          },
+          {
+            "target_company_id": "qdrant",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.6,
+            "reasoning": "Qdrant and Chroma both focus on vector search and embedding databases, appealing to developers in AI."
+          },
+          {
+            "target_company_id": "huggingface",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.5,
+            "reasoning": "Chroma's integration with LLM applications aligns with Hugging Face's focus on AI models, suggesting potential collaboration opportunities."
+          },
+          {
+            "target_company_id": "wandb",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.4,
+            "reasoning": "Both companies focus on developer-led growth and AI infrastructure, appealing to similar developer communities."
+          }
+        ],
+        "enterprise_readiness_score": 4,
+        "operational_improvement_potential": 6,
+        "financial_profile_cluster": "early_stage_pre_revenue",
+        "developer_adoption_score": 8,
+        "product_maturity_score": 5,
+        "customer_switching_cost": 3,
+        "revenue_predictability": 2,
+        "market_timing_score": 8
+      }
     },
     {
       "company_id": "zilliz",
@@ -859,7 +2518,55 @@
         "github_stars": 30000,
         "developer_community_size": "large"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 7,
+        "moat_reasoning": "Zilliz's moat is primarily built on its open-source Milvus project, which has gained significant traction in the developer community, as evidenced by its 30,000 GitHub stars. This open-source foundation creates a strong network effect and community-driven innovation. Additionally, the managed Zilliz Cloud offers enterprise-grade features that enhance its competitive positioning.",
+        "investment_themes": [
+          "open_source",
+          "vector_search",
+          "ai_infrastructure"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "pinecone",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Both Zilliz and Pinecone offer vector similarity search solutions, targeting similar use cases in AI-driven applications."
+          },
+          {
+            "target_company_id": "weaviate",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Weaviate and Zilliz both provide vector search capabilities, competing for the same set of customers looking for scalable AI infrastructure."
+          },
+          {
+            "target_company_id": "chroma",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "Chroma and Zilliz both focus on vector search and AI infrastructure, targeting developers and enterprises needing advanced search capabilities."
+          },
+          {
+            "target_company_id": "qdrant",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.5,
+            "reasoning": "Both companies are part of the emerging vector search infrastructure theme, addressing the growing demand for AI-driven search solutions."
+          },
+          {
+            "target_company_id": "huggingface",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.4,
+            "reasoning": "Zilliz could potentially partner with Hugging Face to integrate vector search capabilities with NLP models, enhancing AI application development."
+          }
+        ],
+        "enterprise_readiness_score": 6,
+        "operational_improvement_potential": 5,
+        "financial_profile_cluster": "high_growth_cash_burning",
+        "developer_adoption_score": 8,
+        "product_maturity_score": 6,
+        "customer_switching_cost": 5,
+        "revenue_predictability": 4,
+        "market_timing_score": 9
+      }
     },
     {
       "company_id": "qdrant",
@@ -882,7 +2589,56 @@
         "github_stars": 20000,
         "developer_community_size": "large"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 6,
+        "moat_reasoning": "Qdrant's moat is primarily based on its open-source nature and high performance in vector search, which attracts a strong developer community. However, the open-source model also means lower switching costs and potential competition from larger players.",
+        "investment_themes": [
+          "open_source",
+          "vector_search",
+          "ai_infrastructure",
+          "developer_led_growth"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "pinecone",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Both Qdrant and Pinecone offer vector search solutions, competing for similar customers interested in high-performance vector databases."
+          },
+          {
+            "target_company_id": "weaviate",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Weaviate and Qdrant both provide vector search capabilities, targeting similar use cases in AI and machine learning applications."
+          },
+          {
+            "target_company_id": "chroma",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.6,
+            "reasoning": "Chroma and Qdrant are both in the vector search space, with Chroma also focusing on open-source solutions."
+          },
+          {
+            "target_company_id": "zilliz",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.7,
+            "reasoning": "Zilliz, through Milvus, targets the same vector search segment, focusing on AI and machine learning applications."
+          },
+          {
+            "target_company_id": "huggingface",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.5,
+            "reasoning": "Both companies are involved in AI infrastructure and benefit from the growth of AI and machine learning applications."
+          }
+        ],
+        "enterprise_readiness_score": 5,
+        "operational_improvement_potential": 6,
+        "financial_profile_cluster": "early_stage_pre_revenue",
+        "developer_adoption_score": 8,
+        "product_maturity_score": 5,
+        "customer_switching_cost": 4,
+        "revenue_predictability": 3,
+        "market_timing_score": 8
+      }
     },
     {
       "company_id": "firebolt",
@@ -905,7 +2661,61 @@
         "github_stars": null,
         "developer_community_size": "small"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 5,
+        "moat_reasoning": "Firebolt's moat is primarily based on its technological differentiation in delivering sub-second analytics performance. However, the competitive landscape in cloud data warehousing is intense, with established players like Snowflake and emerging disruptors like ClickHouse.",
+        "investment_themes": [
+          "real_time_analytics",
+          "cloud_data_platforms",
+          "emerging_technologies"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "snowflake",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Both companies offer cloud data warehousing solutions, but Firebolt focuses on sub-second analytics performance."
+          },
+          {
+            "target_company_id": "clickhouse",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.6,
+            "reasoning": "ClickHouse is another emerging player in the analytics database space, known for its speed and efficiency."
+          },
+          {
+            "target_company_id": "databricks",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.5,
+            "reasoning": "Both target data-driven enterprises looking for advanced analytics capabilities."
+          },
+          {
+            "target_company_id": "bigquery",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.6,
+            "reasoning": "Google BigQuery is a major player in cloud data warehousing, competing with Firebolt on performance and scalability."
+          },
+          {
+            "target_company_id": "redshift",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.5,
+            "reasoning": "Amazon Redshift is a well-established cloud data warehouse, competing with Firebolt on analytics performance."
+          },
+          {
+            "target_company_id": "motherduck",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.4,
+            "reasoning": "Both are emerging disruptors in the cloud data platform space, focusing on performance and efficiency."
+          }
+        ],
+        "enterprise_readiness_score": 5,
+        "operational_improvement_potential": 6,
+        "financial_profile_cluster": "high_growth_cash_burning",
+        "developer_adoption_score": 4,
+        "product_maturity_score": 5,
+        "customer_switching_cost": 4,
+        "revenue_predictability": 4,
+        "market_timing_score": 7
+      }
     },
     {
       "company_id": "clickhouse",
@@ -929,7 +2739,68 @@
         "github_stars": 37000,
         "developer_community_size": "very_large"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 7,
+        "moat_reasoning": "ClickHouse's moat is primarily driven by its open-source nature and strong community support, which fosters rapid innovation and adoption. Additionally, its specialization in real-time analytics for OLAP workloads provides a niche advantage.",
+        "investment_themes": [
+          "open_source",
+          "real_time_analytics",
+          "developer_led_growth",
+          "data_gravity"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "snowflake",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Both ClickHouse and Snowflake offer solutions for analytics, but ClickHouse focuses on real-time OLAP workloads with an open-source model, while Snowflake provides a broader cloud data platform."
+          },
+          {
+            "target_company_id": "databricks",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "Both companies target data-driven organizations looking for advanced analytics capabilities, although Databricks focuses more on data engineering and machine learning."
+          },
+          {
+            "target_company_id": "firebolt",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Firebolt and ClickHouse both focus on high-performance analytics, with Firebolt also emphasizing speed and efficiency for OLAP queries."
+          },
+          {
+            "target_company_id": "starrocks",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "StarRocks and ClickHouse are both open-source OLAP databases designed for real-time analytics, competing for similar use cases."
+          },
+          {
+            "target_company_id": "supabase",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.5,
+            "reasoning": "Both ClickHouse and Supabase leverage open-source models to drive developer adoption and community engagement."
+          },
+          {
+            "target_company_id": "bigquery",
+            "relationship_type": "DISRUPTS",
+            "strength": 0.6,
+            "reasoning": "ClickHouse's open-source and real-time capabilities challenge traditional cloud data warehouse offerings like Google BigQuery."
+          },
+          {
+            "target_company_id": "neon",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.4,
+            "reasoning": "Both companies are part of the emerging disruptors category, focusing on innovative database technologies."
+          }
+        ],
+        "enterprise_readiness_score": 6,
+        "operational_improvement_potential": 5,
+        "financial_profile_cluster": "high_growth_cash_burning",
+        "developer_adoption_score": 9,
+        "product_maturity_score": 7,
+        "customer_switching_cost": 6,
+        "revenue_predictability": 5,
+        "market_timing_score": 8
+      }
     },
     {
       "company_id": "starrocks",
@@ -952,7 +2823,61 @@
         "github_stars": 8500,
         "developer_community_size": "medium"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 7,
+        "moat_reasoning": "StarRocks' moat is built on its open-source nature and ability to deliver sub-second queries on fresh data, which is a strong differentiator in the real-time analytics space. The open-source model encourages community contributions and adoption, enhancing its product capabilities and reach.",
+        "investment_themes": [
+          "open_source",
+          "real_time_analytics",
+          "developer_led_growth"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "clickhouse",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Both StarRocks and ClickHouse are open-source real-time analytics databases, competing for the same market segment focused on high-performance querying."
+          },
+          {
+            "target_company_id": "firebolt",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.7,
+            "reasoning": "Firebolt and StarRocks both target the real-time analytics market, offering high-speed query performance."
+          },
+          {
+            "target_company_id": "databricks",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "Databricks and StarRocks both serve the analytics market, though Databricks is broader with its data lakehouse approach."
+          },
+          {
+            "target_company_id": "snowflake",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.5,
+            "reasoning": "Snowflake and StarRocks both aim at analytics workloads, but Snowflake offers a more comprehensive data platform."
+          },
+          {
+            "target_company_id": "bigquery",
+            "relationship_type": "DISRUPTS",
+            "strength": 0.4,
+            "reasoning": "StarRocks' open-source and real-time capabilities pose a disruptive threat to established players like Google BigQuery in specific use cases."
+          },
+          {
+            "target_company_id": "supabase",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.5,
+            "reasoning": "Both StarRocks and Supabase leverage open-source models to drive developer adoption and community engagement."
+          }
+        ],
+        "enterprise_readiness_score": 5,
+        "operational_improvement_potential": 6,
+        "financial_profile_cluster": "early_stage_pre_revenue",
+        "developer_adoption_score": 8,
+        "product_maturity_score": 6,
+        "customer_switching_cost": 4,
+        "revenue_predictability": 3,
+        "market_timing_score": 8
+      }
     },
     {
       "company_id": "neon",
@@ -975,7 +2900,55 @@
         "github_stars": 14000,
         "developer_community_size": "large"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 6,
+        "moat_reasoning": "Neon's moat is primarily built on its innovative serverless architecture and developer-focused features like database branching. However, the competitive landscape in cloud databases is intense, with many established players offering similar capabilities.",
+        "investment_themes": [
+          "serverless",
+          "developer_led_growth",
+          "consumption_pricing"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "supabase",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.8,
+            "reasoning": "Both Neon and Supabase offer serverless Postgres solutions targeting developers with a focus on ease of use and scalability."
+          },
+          {
+            "target_company_id": "firebolt",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.6,
+            "reasoning": "Both companies are emerging disruptors in the database space, focusing on performance and scalability."
+          },
+          {
+            "target_company_id": "snowflake",
+            "relationship_type": "DISRUPTS",
+            "strength": 0.5,
+            "reasoning": "Neon's serverless approach and consumption-based pricing model challenge traditional data warehousing solutions like Snowflake."
+          },
+          {
+            "target_company_id": "clickhouse",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.7,
+            "reasoning": "Both Neon and ClickHouse focus on real-time analytics and developer-friendly features."
+          },
+          {
+            "target_company_id": "databricks",
+            "relationship_type": "PARTNERS_WITH",
+            "strength": 0.4,
+            "reasoning": "Potential for partnership as both focus on cloud-native, scalable data solutions."
+          }
+        ],
+        "enterprise_readiness_score": 5,
+        "operational_improvement_potential": 7,
+        "financial_profile_cluster": "early_stage_pre_revenue",
+        "developer_adoption_score": 8,
+        "product_maturity_score": 5,
+        "customer_switching_cost": 4,
+        "revenue_predictability": 4,
+        "market_timing_score": 9
+      }
     },
     {
       "company_id": "supabase",
@@ -998,7 +2971,55 @@
         "github_stars": 72000,
         "developer_community_size": "very_large"
       },
-      "llm_enriched": {}
+      "llm_enriched": {
+        "moat_durability": 6,
+        "moat_reasoning": "Supabase's moat is primarily built on its open-source nature and strong developer community, which creates a network effect. However, the open-source model also means lower barriers for competitors to replicate features.",
+        "investment_themes": [
+          "open_source",
+          "developer_led_growth",
+          "real_time_analytics"
+        ],
+        "competitive_relationships": [
+          {
+            "target_company_id": "firebase",
+            "relationship_type": "COMPETES_WITH",
+            "strength": 0.9,
+            "reasoning": "Supabase directly competes with Firebase as an open-source alternative offering similar backend-as-a-service features."
+          },
+          {
+            "target_company_id": "neon",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.7,
+            "reasoning": "Both companies are part of the emerging trend of open-source backend solutions built on Postgres."
+          },
+          {
+            "target_company_id": "supabase",
+            "relationship_type": "TARGETS_SAME_SEGMENT",
+            "strength": 0.8,
+            "reasoning": "Supabase targets developers looking for backend solutions, similar to Firebase."
+          },
+          {
+            "target_company_id": "clickhouse",
+            "relationship_type": "DISRUPTS",
+            "strength": 0.6,
+            "reasoning": "Supabase disrupts traditional database services by offering a real-time, open-source alternative."
+          },
+          {
+            "target_company_id": "firebolt",
+            "relationship_type": "SHARES_INVESTMENT_THEME",
+            "strength": 0.5,
+            "reasoning": "Both companies are part of the broader trend towards real-time analytics and data infrastructure."
+          }
+        ],
+        "enterprise_readiness_score": 5,
+        "operational_improvement_potential": 7,
+        "financial_profile_cluster": "early_stage_pre_revenue",
+        "developer_adoption_score": 9,
+        "product_maturity_score": 6,
+        "customer_switching_cost": 4,
+        "revenue_predictability": 3,
+        "market_timing_score": 8
+      }
     }
   ]
 }

@@ -33,8 +33,9 @@ def get_competitors(driver, company_id: str, limit: int = 20) -> list[dict]:
     """Get competitors via COMPETES_WITH edges, ordered by strength."""
     query = """
     MATCH (c:Company {company_id: $company_id})-[r:COMPETES_WITH]-(t:Company)
+    WITH t, max(r.strength) AS strength, collect(r.reasoning)[0] AS reasoning
     RETURN t.company_id AS company_id, t.name AS name, t.sector AS sector,
-           r.strength AS strength, r.reasoning AS reasoning,
+           strength, reasoning,
            t.moat_durability AS moat_durability,
            t.market_cap_b AS market_cap_b,
            t.revenue_ttm_b AS revenue_ttm_b,
@@ -42,7 +43,7 @@ def get_competitors(driver, company_id: str, limit: int = 20) -> list[dict]:
            t.enterprise_readiness_score AS enterprise_readiness_score,
            t.developer_adoption_score AS developer_adoption_score,
            t.financial_profile_cluster AS financial_profile_cluster
-    ORDER BY r.strength DESC
+    ORDER BY strength DESC
     LIMIT $limit
     """
     with driver.session() as session:
