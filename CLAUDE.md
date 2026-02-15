@@ -29,7 +29,13 @@ InvestorLens/
 │   │   ├── schema.cypher          # Neo4j constraints & indexes
 │   │   ├── loader.py              # Load companies.json → Neo4j (nodes + edges)
 │   │   └── queries.py             # Cypher query templates + verification
-│   ├── search/                    # (Phase 2 — not yet built)
+│   ├── search/
+│   │   ├── query_parser.py        # Query classification + entity extraction (pattern matching)
+│   │   ├── persona_configs.py     # 5 persona weight configurations
+│   │   ├── graph_traversal.py     # Neo4j candidate retrieval per query type
+│   │   ├── persona_ranker.py      # Scoring + ranking engine with graph relevance boost
+│   │   ├── search_pipeline.py     # Orchestrator: parse → retrieve → rank
+│   │   └── test_queries.py        # Verification script for all 6 demo queries × 5 personas
 │   ├── agents/                    # (Phase 3 — not yet built)
 │   │   └── prompts/
 │   └── api/                       # (Phase 3 — not yet built)
@@ -42,7 +48,7 @@ InvestorLens/
 
 ## Build Phases
 1. **Phase 1: Data Pipeline + Knowledge Graph** — COMPLETED
-2. **Phase 2: Search + Persona Ranking Engine** — Query parsing, graph traversal, persona-specific scoring
+2. **Phase 2: Search + Persona Ranking Engine** — COMPLETED
 3. **Phase 3: LangChain Orchestration + NL Explanations** — LangGraph agents, LangSmith tracing, NL generation
 4. **Phase 4: Frontend** — React UI with search, results, graph viz, trace viewer
 
@@ -78,6 +84,38 @@ python3 backend/graph/loader.py
 # Verify graph
 python3 backend/graph/queries.py
 ```
+
+## Phase 2 Completed — Search + Persona Ranking
+
+### How to Run Search
+```bash
+cd /Users/achilles92/Documents/Projects/InvestorLens
+source backend/venv/bin/activate
+
+# Run verification (all 6 demo queries × 5 personas)
+python3 backend/search/test_queries.py
+```
+
+### Pipeline Architecture
+`query_parser` → `graph_traversal` → `persona_ranker` → `SearchResult`
+
+- **Query types:** competitors_to, compare, acquisition_target, attribute_search
+- **Entity resolution:** fuzzy name→company_id matching from companies.json
+- **Candidate retrieval:** Neo4j traversal via COMPETES_WITH, DISRUPTS, TARGETS_SAME_SEGMENT, SHARES_INVESTMENT_THEME
+- **Theme-only filtering:** candidates with only SHARES_INVESTMENT_THEME edges are filtered (prevents false competitors)
+- **Graph relevance boost:** COMPETES_WITH +0.15×strength, DISRUPTS +0.10, TARGETS_SAME_SEGMENT +0.05
+- **Scoring:** LLM scores normalized /10, financials min-max normalized, missing data defaults to 0.5
+
+### Verified Persona Differentiation (Query 1: "Competitors to Snowflake")
+- **Value Investor:** BigQuery, Redshift, Azure Synapse (established + positive FCF + moats)
+- **PE Firm:** BigQuery, Azure Synapse, Cloudera (margins, operational improvement upside)
+- **Growth VC:** ClickHouse, Databricks, BigQuery (disruptors surface!)
+- **Strategic Acquirer:** BigQuery, Databricks, Redshift
+- **Enterprise Buyer:** Databricks, BigQuery, Azure Synapse (Databricks #1 = enterprise-ready)
+
+### Verified C3 AI Results (Query 4 — personally validatable)
+- **Value Investor:** Palantir, DataRobot, Scale AI
+- **Growth VC:** Hugging Face, Scale AI, Dataiku
 
 ### Neo4j Access
 - **Docker container:** `neo4j-investorlens`
@@ -127,10 +165,9 @@ python3 backend/graph/queries.py
 - LLM enrichment supports `--provider openai` and `--provider anthropic` flags
 - Neo4j container must be running for graph operations: `docker start neo4j-investorlens`
 
-## What's Next — Phase 2
-Build the search + persona ranking engine:
-- `backend/search/query_parser.py` — classify query type, extract entities
-- `backend/search/graph_traversal.py` — Neo4j traversal per query type
-- `backend/search/persona_ranker.py` — 5 scoring functions with different weight configs
-- `backend/search/persona_configs.py` — weight configurations per lens
-- `backend/search/search_pipeline.py` — orchestrate parse → retrieve → rank
+## What's Next — Phase 3
+Build LangChain orchestration + natural language explanations:
+- LangGraph agent for multi-step reasoning chains
+- LangSmith tracing for observability
+- Natural language explanation generation per ranked result
+- FastAPI endpoints to expose search pipeline
