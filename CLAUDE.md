@@ -36,9 +36,23 @@ InvestorLens/
 │   │   ├── persona_ranker.py      # Scoring + ranking engine with graph relevance boost
 │   │   ├── search_pipeline.py     # Orchestrator: parse → retrieve → rank
 │   │   └── test_queries.py        # Verification script for all 6 demo queries × 5 personas
-│   ├── agents/                    # (Phase 3 — not yet built)
-│   │   └── prompts/
-│   └── api/                       # (Phase 3 — not yet built)
+│   ├── agents/
+│   │   ├── __init__.py
+│   │   ├── state.py               # AgentState TypedDict for LangGraph
+│   │   ├── prompts.py             # 4 ChatPromptTemplates + persona voice hints
+│   │   ├── explainer.py           # NL explanation generator (GPT-4o)
+│   │   ├── nodes.py               # search_node, explain_node, synthesize_node
+│   │   └── graph.py               # LangGraph StateGraph: search→explain→synthesize
+│   └── api/
+│       ├── __init__.py
+│       ├── main.py                # FastAPI app, CORS, LangSmith setup
+│       ├── models.py              # Pydantic request/response models
+│       └── routes/
+│           ├── __init__.py
+│           ├── health.py          # GET /health
+│           ├── search.py          # POST /api/search
+│           ├── companies.py       # GET /api/companies, /api/companies/{id}
+│           └── personas.py        # GET /api/personas
 ├── frontend/                      # (Phase 4 — not yet built)
 ├── .env                           # API keys: OPENAI_API_KEY, ANTHROPIC_API_KEY, NEO4J creds, etc.
 ├── .env.example                   # Template for .env
@@ -49,7 +63,7 @@ InvestorLens/
 ## Build Phases
 1. **Phase 1: Data Pipeline + Knowledge Graph** — COMPLETED
 2. **Phase 2: Search + Persona Ranking Engine** — COMPLETED
-3. **Phase 3: LangChain Orchestration + NL Explanations** — LangGraph agents, LangSmith tracing, NL generation
+3. **Phase 3: LangGraph Orchestration + NL Explanations + FastAPI API** — COMPLETED
 4. **Phase 4: Frontend** — React UI with search, results, graph viz, trace viewer
 
 ## Phase 1 Completed — What's In the Graph
@@ -165,9 +179,59 @@ python3 backend/search/test_queries.py
 - LLM enrichment supports `--provider openai` and `--provider anthropic` flags
 - Neo4j container must be running for graph operations: `docker start neo4j-investorlens`
 
-## What's Next — Phase 3
-Build LangChain orchestration + natural language explanations:
-- LangGraph agent for multi-step reasoning chains
-- LangSmith tracing for observability
-- Natural language explanation generation per ranked result
-- FastAPI endpoints to expose search pipeline
+## Phase 3 Completed — LangGraph Agent + API
+
+### Architecture
+```
+[FastAPI REST API]  →  [LangGraph Agent]  →  [Phase 2 Search]  →  [Neo4j]
+                          search → explain → synthesize
+                                    ↓
+                              [GPT-4o NL gen]
+```
+
+### How to Run the API
+```bash
+docker start neo4j-investorlens
+cd /Users/achilles92/Documents/Projects/InvestorLens
+source backend/venv/bin/activate
+uvicorn backend.api.main:app --reload --port 8000
+```
+
+### API Endpoints
+| Method | Path | Description |
+|--------|------|-------------|
+| `GET` | `/health` | Service health + Neo4j status |
+| `POST` | `/api/search` | Persona-driven search with optional NL explanation |
+| `GET` | `/api/personas` | List 5 personas with descriptions |
+| `GET` | `/api/companies` | List all 37 companies |
+| `GET` | `/api/companies/{id}` | Single company detail |
+
+### Search Request
+```json
+{
+  "query": "Competitors to Snowflake",
+  "persona": "value_investor",
+  "include_explanation": true,
+  "all_personas": false
+}
+```
+- `include_explanation: false` returns structured-only results in ~270ms
+- `include_explanation: true` adds GPT-4o NL explanation (~8-13s total)
+- `all_personas: true` runs query across all 5 personas with cross-persona contrast
+
+### LangGraph Agent
+- **3 nodes:** `search_node` → `explain_node` → `synthesize_node`
+- **Conditional edge:** skips `explain_node` when `include_explanation=false`
+- **LangSmith tracing:** auto-enabled when `LANGCHAIN_TRACING_V2=true` in `.env`
+- **NL generation:** 4 prompt templates (competitors, compare, acquisition, attribute) with persona-specific voice hints
+
+### Verified All 6 Demo Queries via API
+All queries return correct ranked results matching Phase 2 verification, with persona-appropriate NL explanations.
+
+## What's Next — Phase 4
+Build React frontend:
+- Search interface with persona selector
+- Results display with score breakdowns
+- Graph visualization (vis.js / react-force-graph)
+- NL explanation display
+- Cross-persona comparison view
