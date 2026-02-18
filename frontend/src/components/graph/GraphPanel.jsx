@@ -9,7 +9,7 @@ function hexToRgba(hex, alpha) {
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
-export default function GraphPanel({ graphData, height = 350 }) {
+export default function GraphPanel({ graphData, height = 500 }) {
   const fgRef = useRef();
 
   const data = useMemo(() => {
@@ -18,7 +18,8 @@ export default function GraphPanel({ graphData, height = 350 }) {
     const nodes = graphData.nodes.map((n) => ({
       ...n,
       color: SECTOR_COLORS[n.sector] || '#6b7280',
-      val: Math.max(4, Math.min(20, (n.market_cap_b || 5) * 0.5)),
+      // Keep nodes small — 3px to 7px radius
+      val: n.is_center ? 7 : Math.max(3, Math.min(6, (n.market_cap_b || 5) * 0.12)),
     }));
 
     // Deduplicate edges (bidirectional)
@@ -41,47 +42,63 @@ export default function GraphPanel({ graphData, height = 350 }) {
     return { nodes, links };
   }, [graphData]);
 
-  // Zoom to fit on data change
+  // Configure forces for a spread-out layout + zoom to fit
   useEffect(() => {
-    if (fgRef.current && data.nodes.length > 0) {
-      setTimeout(() => fgRef.current.zoomToFit(400, 40), 300);
-    }
+    if (!fgRef.current || data.nodes.length === 0) return;
+
+    const fg = fgRef.current;
+
+    // Strong repulsion to push nodes far apart
+    fg.d3Force('charge').strength(-300).distanceMax(400);
+
+    // Long link distance so connected nodes don't huddle
+    fg.d3Force('link').distance(100);
+
+    // Gentle centering
+    fg.d3Force('center').strength(0.05);
+
+    // Reheat the simulation so new forces take effect
+    fg.d3ReheatSimulation();
+
+    // Zoom to fit after it settles
+    setTimeout(() => fg.zoomToFit(400, 60), 800);
   }, [data]);
 
   const paintNode = useCallback((node, ctx) => {
-    const size = node.val || 6;
+    const size = node.val || 4;
     const isCtr = node.is_center;
-    const nodeAlpha = isCtr ? 0.85 : 0.4;
+    const nodeAlpha = isCtr ? 0.9 : 0.55;
 
     // Glow for center node
     if (isCtr) {
       ctx.beginPath();
-      ctx.arc(node.x, node.y, size + 5, 0, 2 * Math.PI);
+      ctx.arc(node.x, node.y, size + 4, 0, 2 * Math.PI);
       ctx.fillStyle = hexToRgba(node.color, 0.15);
       ctx.fill();
     }
 
-    // Node circle — reduced opacity for non-center
+    // Node circle
     ctx.beginPath();
     ctx.arc(node.x, node.y, size, 0, 2 * Math.PI);
     ctx.fillStyle = hexToRgba(node.color, nodeAlpha);
     ctx.fill();
 
-    // Stroke to distinguish colors
+    // Colored stroke
     ctx.strokeStyle = hexToRgba(node.color, Math.min(nodeAlpha + 0.3, 1));
-    ctx.lineWidth = isCtr ? 2.5 : 1.5;
+    ctx.lineWidth = isCtr ? 2 : 1;
     ctx.stroke();
 
-    // Label — prominent, with subtle background for readability
-    const fontSize = isCtr ? 11 : 10;
+    // Label with background pill for readability
+    const fontSize = isCtr ? 11 : 9;
     ctx.font = `${isCtr ? 'bold ' : ''}${fontSize}px Inter, sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
 
-    const labelY = node.y + size + 4;
+    const labelY = node.y + size + 3;
     const textWidth = ctx.measureText(node.label).width;
-    ctx.fillStyle = 'rgba(244, 248, 245, 0.8)';
-    ctx.fillRect(node.x - textWidth / 2 - 2, labelY - 1, textWidth + 4, fontSize + 2);
+
+    ctx.fillStyle = 'rgba(244, 248, 245, 0.85)';
+    ctx.fillRect(node.x - textWidth / 2 - 2, labelY - 1, textWidth + 4, fontSize + 3);
 
     ctx.fillStyle = '#1a2e24';
     ctx.fillText(node.label, node.x, labelY);
@@ -91,8 +108,16 @@ export default function GraphPanel({ graphData, height = 350 }) {
 
   return (
     <div className="rounded-xl bg-white border border-surface-200 overflow-hidden shadow-sm">
-      <div className="px-3 py-2 border-b border-surface-200">
+      <div className="px-3 py-2 border-b border-surface-200 flex items-center justify-between">
         <span className="text-xs font-medium text-surface-600">Relationship Graph</span>
+        <div className="flex gap-3">
+          {Object.entries(SECTOR_COLORS).map(([sector, color]) => (
+            <span key={sector} className="flex items-center gap-1 text-[9px] text-surface-500">
+              <span className="inline-block w-2 h-2 rounded-full" style={{ backgroundColor: color }} />
+              {sector.split('/')[0]}
+            </span>
+          ))}
+        </div>
       </div>
       <ForceGraph2D
         ref={fgRef}
@@ -103,16 +128,16 @@ export default function GraphPanel({ graphData, height = 350 }) {
         nodeCanvasObject={paintNode}
         nodePointerAreaPaint={(node, color, ctx) => {
           ctx.beginPath();
-          ctx.arc(node.x, node.y, node.val + 4, 0, 2 * Math.PI);
+          ctx.arc(node.x, node.y, node.val + 6, 0, 2 * Math.PI);
           ctx.fillStyle = color;
           ctx.fill();
         }}
         linkColor={(link) => link.color}
-        linkWidth={(link) => Math.max(1, (link.strength || 0.5) * 3)}
+        linkWidth={(link) => Math.max(0.5, (link.strength || 0.5) * 2)}
         linkDirectionalParticles={0}
-        cooldownTicks={80}
-        d3AlphaDecay={0.04}
-        d3VelocityDecay={0.3}
+        cooldownTicks={150}
+        d3AlphaDecay={0.02}
+        d3VelocityDecay={0.25}
       />
     </div>
   );
