@@ -1,9 +1,17 @@
 export const PERSONA_COLORS = {
-  value_investor: '#10b981',
-  pe_firm: '#3b82f6',
-  growth_vc: '#8b5cf6',
-  strategic_acquirer: '#f59e0b',
-  enterprise_buyer: '#06b6d4',
+  value_investor: '#0d9668',
+  pe_firm: '#2563eb',
+  growth_vc: '#7c3aed',
+  strategic_acquirer: '#d97706',
+  enterprise_buyer: '#0891b2',
+};
+
+export const PERSONA_BG_COLORS = {
+  value_investor: '#ecfdf5',
+  pe_firm: '#eff6ff',
+  growth_vc: '#f5f3ff',
+  strategic_acquirer: '#fffbeb',
+  enterprise_buyer: '#ecfeff',
 };
 
 export const PERSONA_BG = {
@@ -23,12 +31,12 @@ export const PERSONA_BORDER = {
 };
 
 export const EDGE_COLORS = {
-  COMPETES_WITH: '#ef4444',
-  DISRUPTS: '#f97316',
-  PARTNERS_WITH: '#10b981',
-  TARGETS_SAME_SEGMENT: '#3b82f6',
-  SHARES_INVESTMENT_THEME: '#8b5cf6',
-  SUPPLIES_TO: '#f59e0b',
+  COMPETES_WITH: '#dc2626',
+  DISRUPTS: '#ea580c',
+  PARTNERS_WITH: '#0d9668',
+  TARGETS_SAME_SEGMENT: '#2563eb',
+  SHARES_INVESTMENT_THEME: '#7c3aed',
+  SUPPLIES_TO: '#d97706',
 };
 
 export const EDGE_LABELS = {
@@ -41,10 +49,10 @@ export const EDGE_LABELS = {
 };
 
 export const SECTOR_COLORS = {
-  'Cloud Data Platforms': '#3b82f6',
-  'AI/ML Platforms': '#8b5cf6',
-  'Data Integration/ETL': '#10b981',
-  'Data Observability/Governance': '#f59e0b',
-  'Vector/AI Infrastructure': '#ef4444',
-  'Emerging/Disruptors': '#f97316',
+  'Cloud Data Platforms': '#2563eb',
+  'AI/ML Platforms': '#7c3aed',
+  'Data Integration/ETL': '#0d9668',
+  'Data Observability/Governance': '#d97706',
+  'Vector/AI Infrastructure': '#dc2626',
+  'Emerging/Disruptors': '#ea580c',
 };

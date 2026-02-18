@@ -11,7 +11,7 @@ export default function MetadataBar({ metadata, persona, resultCount }) {
       {metadata.total_elapsed_ms != null && (
         <span>{formatElapsed(metadata.total_elapsed_ms)}</span>
       )}
-      {persona && <span className="text-surface-400">{persona}</span>}
+      {persona && <span className="text-surface-600">{persona}</span>}
     </div>
   );
 }

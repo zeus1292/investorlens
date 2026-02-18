@@ -8,13 +8,15 @@ export default function AttributeResults({ results, personaColor, query }) {
 
   return (
     <div className="space-y-3">
-      <h2 className="text-lg font-semibold text-white">
+      <h2 className="text-lg font-semibold text-surface-800">
         Top Companies by{' '}
         <span style={{ color: personaColor }}>{formatAttributeName(attribute)}</span>
       </h2>
-      {results.map((r) => (
-        <ResultCard key={r.company_id} result={r} personaColor={personaColor} />
-      ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        {results.map((r) => (
+          <ResultCard key={r.company_id} result={r} personaColor={personaColor} />
+        ))}
+      </div>
     </div>
   );
 }

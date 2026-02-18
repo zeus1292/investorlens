@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import SearchBar from './components/SearchBar';
+import PersonaSelector from './components/PersonaSelector';
 import LoadingSpinner from './components/common/LoadingSpinner';
 import ErrorBanner from './components/common/ErrorBanner';
 import MetadataBar from './components/common/MetadataBar';
@@ -12,17 +13,21 @@ import { usePersonas } from './hooks/usePersonas';
 
 const DEFAULT_PERSONA = 'value_investor';
 
-function WelcomeState() {
+function DataSnapshot() {
+  const stats = [
+    { label: 'Companies', value: '37' },
+    { label: 'Sectors', value: '6' },
+    { label: 'Relationships', value: '384' },
+    { label: 'Personas', value: '5' },
+  ];
   return (
-    <div className="flex flex-col items-center justify-center py-20 text-center">
-      <h2 className="text-3xl font-bold text-white mb-2">InvestorLens</h2>
-      <p className="text-surface-400 max-w-lg mb-6">
-        Persona-driven company intelligence for Enterprise AI &amp; Data Infrastructure.
-        The same query returns different results depending on who&apos;s asking.
-      </p>
-      <p className="text-xs text-surface-500">
-        Try a demo query above, or type your own search.
-      </p>
+    <div className="flex justify-center gap-8">
+      {stats.map((s) => (
+        <div key={s.label} className="text-center">
+          <div className="text-2xl font-bold text-persona-value">{s.value}</div>
+          <div className="text-xs text-surface-600">{s.label}</div>
+        </div>
+      ))}
     </div>
   );
 }
@@ -30,6 +35,7 @@ function WelcomeState() {
 export default function App() {
   const [persona, setPersona] = useState(DEFAULT_PERSONA);
   const [allPersonasMode, setAllPersonasMode] = useState(false);
+  const [hasSearched, setHasSearched] = useState(false);
   const { personas } = usePersonas();
   const {
     results,
@@ -44,6 +50,7 @@ export default function App() {
 
   const handleSearch = useCallback(
     (query) => {
+      setHasSearched(true);
       search(query, persona, allPersonasMode);
     },
     [search, persona, allPersonasMode],
@@ -52,12 +59,11 @@ export default function App() {
   const handlePersonaChange = useCallback(
     (newPersona) => {
       setPersona(newPersona);
-      // Re-run current query with new persona if we have results
-      if (results?.query?.raw_query) {
+      if (hasSearched && results?.query?.raw_query) {
         search(results.query.raw_query, newPersona, allPersonasMode);
       }
     },
-    [search, results, allPersonasMode],
+    [search, results, allPersonasMode, hasSearched],
   );
 
   const handleAllPersonasToggle = useCallback(
@@ -70,21 +76,82 @@ export default function App() {
     [search, results, persona],
   );
 
+  const handleBackToLanding = useCallback(() => {
+    setHasSearched(false);
+    clear();
+  }, [clear]);
+
   const hasResults = results && results.results && results.results.length > 0;
 
-  return (
-    <div className="min-h-screen bg-surface-900">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-surface-900/95 backdrop-blur border-b border-surface-800">
-        <div className="max-w-7xl mx-auto px-4 py-4">
+  // Landing view
+  if (!hasSearched && !loading) {
+    return (
+      <div className="min-h-screen bg-surface-50 flex flex-col items-center justify-center px-4">
+        <div className="w-full max-w-3xl space-y-10 text-center">
+          {/* Title */}
+          <div className="space-y-3">
+            <h1 className="text-4xl font-bold text-surface-900">InvestorLens</h1>
+            <p className="text-surface-600 max-w-lg mx-auto">
+              Persona-driven company intelligence for Enterprise AI &amp; Data Infrastructure.
+              The same query returns different results depending on who&apos;s asking.
+            </p>
+          </div>
+
+          {/* Data snapshot */}
+          <DataSnapshot />
+
+          {/* Pick your lens */}
+          <div className="space-y-4">
+            <h2 className="text-sm font-semibold text-surface-500 uppercase tracking-wider">
+              Pick your lens
+            </h2>
+            <PersonaSelector
+              personas={personas}
+              active={persona}
+              onChange={setPersona}
+            />
+          </div>
+
+          {/* Search bar + demo queries */}
           <SearchBar
             personas={personas}
             activePersona={persona}
-            onPersonaChange={handlePersonaChange}
+            onPersonaChange={setPersona}
             onSearch={handleSearch}
             allPersonas={allPersonasMode}
-            onAllPersonasToggle={handleAllPersonasToggle}
+            onAllPersonasToggle={setAllPersonasMode}
+            mode="landing"
           />
+        </div>
+      </div>
+    );
+  }
+
+  // Results view
+  return (
+    <div className="min-h-screen bg-surface-50">
+      {/* Compact header */}
+      <header className="sticky top-0 z-50 bg-surface-50/95 backdrop-blur border-b border-surface-200">
+        <div className="max-w-7xl mx-auto px-4 py-3">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={handleBackToLanding}
+              className="text-lg font-bold text-persona-value hover:opacity-80 transition-opacity cursor-pointer whitespace-nowrap"
+            >
+              InvestorLens
+            </button>
+            <div className="flex-1">
+              <SearchBar
+                personas={personas}
+                activePersona={persona}
+                onPersonaChange={handlePersonaChange}
+                onSearch={handleSearch}
+                allPersonas={allPersonasMode}
+                onAllPersonasToggle={handleAllPersonasToggle}
+                mode="header"
+              />
+            </div>
+          </div>
         </div>
       </header>
 
@@ -93,8 +160,6 @@ export default function App() {
         <ErrorBanner message={error} onDismiss={clear} />
 
         {loading && <LoadingSpinner />}
-
-        {!loading && !hasResults && !error && <WelcomeState />}
 
         {hasResults && (
           <>

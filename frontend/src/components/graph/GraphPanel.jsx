@@ -2,6 +2,13 @@ import { useRef, useCallback, useEffect, useMemo } from 'react';
 import ForceGraph2D from 'react-force-graph-2d';
 import { SECTOR_COLORS, EDGE_COLORS } from '../../utils/colors';
 
+function hexToRgba(hex, alpha) {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
 export default function GraphPanel({ graphData, height = 350 }) {
   const fgRef = useRef();
 
@@ -43,48 +50,56 @@ export default function GraphPanel({ graphData, height = 350 }) {
 
   const paintNode = useCallback((node, ctx) => {
     const size = node.val || 6;
+    const isCtr = node.is_center;
+    const nodeAlpha = isCtr ? 0.85 : 0.4;
 
     // Glow for center node
-    if (node.is_center) {
+    if (isCtr) {
       ctx.beginPath();
-      ctx.arc(node.x, node.y, size + 4, 0, 2 * Math.PI);
-      ctx.fillStyle = `${node.color}30`;
+      ctx.arc(node.x, node.y, size + 5, 0, 2 * Math.PI);
+      ctx.fillStyle = hexToRgba(node.color, 0.15);
       ctx.fill();
     }
 
-    // Node circle
+    // Node circle — reduced opacity for non-center
     ctx.beginPath();
     ctx.arc(node.x, node.y, size, 0, 2 * Math.PI);
-    ctx.fillStyle = node.color;
+    ctx.fillStyle = hexToRgba(node.color, nodeAlpha);
     ctx.fill();
 
-    if (node.is_center) {
-      ctx.strokeStyle = '#fff';
-      ctx.lineWidth = 2;
-      ctx.stroke();
-    }
+    // Stroke to distinguish colors
+    ctx.strokeStyle = hexToRgba(node.color, Math.min(nodeAlpha + 0.3, 1));
+    ctx.lineWidth = isCtr ? 2.5 : 1.5;
+    ctx.stroke();
 
-    // Label
-    ctx.font = `${node.is_center ? 'bold ' : ''}10px Inter, sans-serif`;
+    // Label — prominent, with subtle background for readability
+    const fontSize = isCtr ? 11 : 10;
+    ctx.font = `${isCtr ? 'bold ' : ''}${fontSize}px Inter, sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
-    ctx.fillStyle = '#d1d5db';
-    ctx.fillText(node.label, node.x, node.y + size + 3);
+
+    const labelY = node.y + size + 4;
+    const textWidth = ctx.measureText(node.label).width;
+    ctx.fillStyle = 'rgba(244, 248, 245, 0.8)';
+    ctx.fillRect(node.x - textWidth / 2 - 2, labelY - 1, textWidth + 4, fontSize + 2);
+
+    ctx.fillStyle = '#1a2e24';
+    ctx.fillText(node.label, node.x, labelY);
   }, []);
 
   if (!data.nodes.length) return null;
 
   return (
-    <div className="rounded-xl bg-surface-800 border border-surface-700 overflow-hidden">
-      <div className="px-3 py-2 border-b border-surface-700">
-        <span className="text-xs font-medium text-surface-400">Relationship Graph</span>
+    <div className="rounded-xl bg-white border border-surface-200 overflow-hidden shadow-sm">
+      <div className="px-3 py-2 border-b border-surface-200">
+        <span className="text-xs font-medium text-surface-600">Relationship Graph</span>
       </div>
       <ForceGraph2D
         ref={fgRef}
         graphData={data}
         width={undefined}
         height={height}
-        backgroundColor="#1f2937"
+        backgroundColor="#f0f4f2"
         nodeCanvasObject={paintNode}
         nodePointerAreaPaint={(node, color, ctx) => {
           ctx.beginPath();

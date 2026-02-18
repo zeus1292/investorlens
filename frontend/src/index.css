@@ -1,31 +1,34 @@
 @import "tailwindcss";
 
 @theme {
-  --color-surface-900: #111827;
-  --color-surface-800: #1f2937;
-  --color-surface-700: #374151;
-  --color-surface-600: #4b5563;
-  --color-surface-500: #6b7280;
-  --color-surface-400: #9ca3af;
-  --color-surface-300: #d1d5db;
+  --color-surface-900: #1a2e24;
+  --color-surface-800: #2d3835;
+  --color-surface-700: #d1d9d5;
+  --color-surface-600: #6b7c74;
+  --color-surface-500: #8a9a92;
+  --color-surface-400: #6b7c74;
+  --color-surface-300: #4a5b53;
+  --color-surface-200: #dce5e0;
+  --color-surface-100: #ecf2ee;
+  --color-surface-50: #f4f8f5;
 
-  --color-persona-value: #10b981;
-  --color-persona-pe: #3b82f6;
-  --color-persona-vc: #8b5cf6;
-  --color-persona-acquirer: #f59e0b;
-  --color-persona-buyer: #06b6d4;
+  --color-persona-value: #0d9668;
+  --color-persona-pe: #2563eb;
+  --color-persona-vc: #7c3aed;
+  --color-persona-acquirer: #d97706;
+  --color-persona-buyer: #0891b2;
 
-  --color-edge-competes: #ef4444;
-  --color-edge-disrupts: #f97316;
-  --color-edge-partners: #10b981;
-  --color-edge-segment: #3b82f6;
-  --color-edge-theme: #8b5cf6;
+  --color-edge-competes: #dc2626;
+  --color-edge-disrupts: #ea580c;
+  --color-edge-partners: #0d9668;
+  --color-edge-segment: #2563eb;
+  --color-edge-theme: #7c3aed;
 }
 
 body {
   margin: 0;
-  background: var(--color-surface-900);
-  color: var(--color-surface-300);
+  background: var(--color-surface-50);
+  color: var(--color-surface-900);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -35,9 +38,9 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-surface-900);
+  background: var(--color-surface-100);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-surface-600);
+  background: var(--color-surface-700);
   border-radius: 3px;
 }
