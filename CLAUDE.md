@@ -4,7 +4,7 @@
 InvestorLens is a persona-driven company intelligence search engine for the Enterprise AI / Data Infrastructure sector. The same query returns fundamentally different results depending on the investor persona (Value Investor, PE Firm, Growth VC, Strategic Acquirer, Enterprise Buyer).
 
 ## Tech Stack
-- **Frontend:** React + Vite, vis.js / react-force-graph
+- **Frontend:** React + Vite + Tailwind CSS v4, react-force-graph-2d
 - **Backend API:** FastAPI (Python)
 - **Orchestration:** LangGraph (LangChain)
 - **Observability:** LangSmith
@@ -53,7 +53,31 @@ InvestorLens/
 │           ├── search.py          # POST /api/search
 │           ├── companies.py       # GET /api/companies, /api/companies/{id}
 │           └── personas.py        # GET /api/personas
-├── frontend/                      # (Phase 4 — not yet built)
+├── frontend/
+│   ├── vite.config.js             # Vite config with Tailwind + dev proxy to localhost:8000
+│   ├── package.json
+│   ├── src/
+│   │   ├── main.jsx               # React entry point
+│   │   ├── App.jsx                # Landing/results view switcher, DataSnapshot, hasSearched state
+│   │   ├── index.css              # Tailwind @theme — light pastel green palette
+│   │   ├── api/
+│   │   │   └── client.js          # API client (BASE from VITE_API_URL env var)
+│   │   ├── hooks/
+│   │   │   ├── useSearch.js       # Search + explanation state management
+│   │   │   ├── usePersonas.js     # Fetch personas from API
+│   │   │   └── useCompanies.js    # Fetch companies from API
+│   │   ├── components/
+│   │   │   ├── SearchBar.jsx      # mode="landing" (hero) / mode="header" (compact)
+│   │   │   ├── PersonaSelector.jsx # compact (pills) / default (large cards with descriptions)
+│   │   │   ├── DemoQueries.jsx    # 3 curated queries per persona (PERSONA_QUERIES map)
+│   │   │   ├── common/            # ErrorBanner, LoadingSpinner, MetadataBar
+│   │   │   ├── results/           # ResultCard (collapsible), ScoreBreakdown (pie chart), ResultsContainer, Competitor/Compare/Acquisition/AttributeResults (2-col grid)
+│   │   │   ├── graph/             # GraphPanel — force-directed with d3 repulsion, sector colors, legend
+│   │   │   ├── explanation/       # ExplanationPanel — NL analysis + key insights
+│   │   │   └── crossPersona/      # CrossPersonaTable — 5-persona side-by-side
+│   │   └── utils/
+│   │       ├── colors.js          # PERSONA_COLORS, PERSONA_BG_COLORS, EDGE_COLORS, SECTOR_COLORS
+│   │       └── format.js          # formatCompositeScore, formatAttributeName, formatElapsed
 ├── .env                           # API keys: OPENAI_API_KEY, ANTHROPIC_API_KEY, NEO4J creds, etc.
 ├── .env.example                   # Template for .env
 ├── .gitignore
@@ -64,7 +88,8 @@ InvestorLens/
 1. **Phase 1: Data Pipeline + Knowledge Graph** — COMPLETED
 2. **Phase 2: Search + Persona Ranking Engine** — COMPLETED
 3. **Phase 3: LangGraph Orchestration + NL Explanations + FastAPI API** — COMPLETED
-4. **Phase 4: Frontend** — React UI with search, results, graph viz, trace viewer
+4. **Phase 4: Frontend** — COMPLETED
+5. **Phase 5: Deployment** — Vercel (frontend) + Railway (backend) + Neo4j Aura
 
 ## Phase 1 Completed — What's In the Graph
 - **37 Company nodes** across 6 sectors, all with LLM-enriched scores
@@ -228,10 +253,57 @@ uvicorn backend.api.main:app --reload --port 8000
 ### Verified All 6 Demo Queries via API
 All queries return correct ranked results matching Phase 2 verification, with persona-appropriate NL explanations.
 
-## What's Next — Phase 4
-Build React frontend:
-- Search interface with persona selector
-- Results display with score breakdowns
-- Graph visualization (vis.js / react-force-graph)
-- NL explanation display
-- Cross-persona comparison view
+## Phase 4 Completed — Frontend
+
+### UI Design
+- **Light pastel green theme** — `surface-50` (#f4f8f5) body, white cards, green accent
+- **Persona-first landing page:** Title → DataSnapshot (37/6/384/5) → "Pick your lens" persona cards → persona-specific demo queries → centered search bar
+- **Landing → Results transition:** first search flips to compact sticky header (logo + persona pills + search input + all-personas checkbox)
+- **Collapsible result cards** in 2-column grid — collapsed shows rank + name + score; expand for donut pie chart breakdown + graph context badges
+- **SVG donut pie charts** for score breakdown (replaced horizontal bars)
+- **Force-directed graph panel** — d3 charge -300 repulsion, 100px link distance, 500px height, sector-colored nodes at reduced opacity, label background pills, sector color legend
+- **Cross-persona comparison table** when "All personas" is checked
+
+### How to Run Frontend
+```bash
+cd /Users/achilles92/Documents/Projects/InvestorLens/frontend
+npm install    # first time only
+npm run dev    # Vite dev server at localhost:5173, proxies /api to localhost:8000
+npm run build  # production build to dist/
+```
+
+### API Base URL
+- **Dev:** Vite proxy in `vite.config.js` forwards `/api` + `/health` to `http://localhost:8000`
+- **Production:** Set `VITE_API_URL` env var to deployed backend URL (e.g. `https://investorlens-api.up.railway.app`). Read in `src/api/client.js` via `import.meta.env.VITE_API_URL`
+
+### Frontend Key Files
+| File | Purpose |
+|------|---------|
+| `App.jsx` | Landing/results view switcher, DataSnapshot, hasSearched state |
+| `SearchBar.jsx` | `mode="landing"` (hero) / `mode="header"` (compact row) |
+| `PersonaSelector.jsx` | `compact` prop: pills for header, large cards for landing |
+| `DemoQueries.jsx` | `PERSONA_QUERIES` map — 3 curated queries per persona |
+| `ResultCard.jsx` | Collapsible card (click to expand pie chart + badges) |
+| `ScoreBreakdown.jsx` | SVG donut pie chart + color legend |
+| `GraphPanel.jsx` | Force-directed graph, d3 forces, sector colors |
+| `colors.js` | PERSONA_COLORS, PERSONA_BG_COLORS, EDGE_COLORS, SECTOR_COLORS |
+| `client.js` | API client — `VITE_API_URL` env var for production base URL |
+
+## Deployment
+
+### Frontend — Vercel (GitHub integration)
+- **Repo:** github.com/zeus1292/investorlens
+- **Root Directory:** `frontend` (set in Vercel project settings)
+- **Build Command:** `npm run build`
+- **Output Directory:** `dist`
+- **Environment Variable:** `VITE_API_URL` = deployed backend URL
+- Vercel auto-deploys on push to main
+
+### Backend — Railway (recommended)
+- Needs: FastAPI + Neo4j connection
+- **Required env vars:** `OPENAI_API_KEY`, `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD`, `SEC_EDGAR_USER_AGENT`, `LANGCHAIN_TRACING_V2`, `LANGCHAIN_API_KEY`
+- **Start command:** `uvicorn backend.api.main:app --host 0.0.0.0 --port $PORT`
+- Neo4j Aura (free tier) replaces local Docker container
+
+### GitHub Remote
+- **Origin:** `https://github.com/zeus1292/investorlens.git`

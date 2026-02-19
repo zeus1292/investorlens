@@ -1,4 +1,4 @@
-const BASE = '';
+const BASE = import.meta.env.VITE_API_URL || '';
 
 export async function searchQuery({ query, persona, includeExplanation = false, allPersonas = false }, signal) {
   const res = await fetch(`${BASE}/api/search`, {
