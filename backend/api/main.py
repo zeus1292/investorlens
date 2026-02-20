@@ -24,13 +24,17 @@ app = FastAPI(
     version="0.3.0",
 )
 
-# CORS for frontend development
+# CORS — read from env var in production, fall back to localhost for dev
+_raw_origins = os.environ.get("ALLOWED_ORIGINS", "")
+_extra_origins = [o.strip() for o in _raw_origins.split(",") if o.strip()]
+_origins = [
+    "http://localhost:5173",   # Vite dev server
+    "http://localhost:3000",   # Alternative frontend dev
+] + _extra_origins
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",   # Vite dev server
-        "http://localhost:3000",   # Alternative frontend dev
-    ],
+    allow_origins=_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: investorlens-api
+    env: python
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.api.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: NEO4J_URI
+        sync: false
+      - key: NEO4J_USER
+        sync: false
+      - key: NEO4J_PASSWORD
+        sync: false
+      - key: SEC_EDGAR_USER_AGENT
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: LANGCHAIN_TRACING_V2
+        value: "false"
