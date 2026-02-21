@@ -79,9 +79,11 @@ export default function CompareResults({ results, compareData, personaColor, que
           <h3 className="text-sm font-medium text-surface-600">
             {compareData?.common_competitors?.length > 0 ? 'Common Competitors (ranked)' : 'Related Companies'}
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="columns-1 md:columns-2 gap-3">
             {results.map((r) => (
-              <ResultCard key={r.company_id} result={r} personaColor={personaColor} />
+              <div key={r.company_id} className="break-inside-avoid mb-3">
+                <ResultCard result={r} personaColor={personaColor} />
+              </div>
             ))}
           </div>
         </div>

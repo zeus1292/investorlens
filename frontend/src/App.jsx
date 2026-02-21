@@ -169,14 +169,12 @@ export default function App() {
               resultCount={results.results.length}
             />
 
-            <div className="mt-4 grid grid-cols-1 lg:grid-cols-5 gap-6">
-              {/* Left column: results */}
-              <div className="lg:col-span-3">
-                <ResultsContainer data={results} />
-              </div>
+            <div className="mt-4 space-y-6">
+              {/* Results grid — full width */}
+              <ResultsContainer data={results} />
 
-              {/* Right column: graph + explanation */}
-              <div className="lg:col-span-2 space-y-4 lg:sticky lg:top-32 lg:self-start">
+              {/* Graph + Explanation side by side */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <GraphPanel graphData={results.graph_data} />
                 <ExplanationPanel
                   explanation={explanation}
