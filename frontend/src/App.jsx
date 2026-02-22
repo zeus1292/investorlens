@@ -32,10 +32,16 @@ function DataSnapshot() {
   );
 }
 
+const TABS = [
+  { id: 'rankings', label: 'Rankings' },
+  { id: 'relationship-map', label: 'Relationship Map' },
+];
+
 export default function App() {
   const [persona, setPersona] = useState(DEFAULT_PERSONA);
   const [allPersonasMode, setAllPersonasMode] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
+  const [activeTab, setActiveTab] = useState('rankings');
   const { personas } = usePersonas();
   const {
     results,
@@ -51,6 +57,7 @@ export default function App() {
   const handleSearch = useCallback(
     (query) => {
       setHasSearched(true);
+      setActiveTab('rankings');
       search(query, persona, allPersonasMode);
     },
     [search, persona, allPersonasMode],
@@ -169,19 +176,40 @@ export default function App() {
               resultCount={results.results.length}
             />
 
-            <div className="mt-4 space-y-6">
-              {/* Results grid — full width */}
-              <ResultsContainer data={results} />
+            {/* Tab bar */}
+            <div className="mt-4 flex gap-0 border-b border-surface-200">
+              {TABS.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={[
+                    'px-4 py-2 text-sm font-medium transition-colors -mb-px border-b-2',
+                    activeTab === tab.id
+                      ? 'text-surface-900 border-persona-value'
+                      : 'text-surface-400 border-transparent hover:text-surface-600',
+                  ].join(' ')}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
 
-              {/* Graph + Explanation side by side */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <GraphPanel graphData={results.graph_data} />
-                <ExplanationPanel
-                  explanation={explanation}
-                  highlights={explanationHighlights}
-                  loading={explanationLoading}
-                />
-              </div>
+            {/* Tab content */}
+            <div className="mt-5 space-y-6">
+              {activeTab === 'rankings' && (
+                <>
+                  <ResultsContainer data={results} />
+                  <ExplanationPanel
+                    explanation={explanation}
+                    highlights={explanationHighlights}
+                    loading={explanationLoading}
+                  />
+                </>
+              )}
+
+              {activeTab === 'relationship-map' && (
+                <GraphPanel graphData={results.graph_data} height={620} />
+              )}
             </div>
 
             {/* Cross-persona comparison */}
