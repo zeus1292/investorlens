@@ -9,7 +9,7 @@ function hexToRgba(hex, alpha) {
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
-export default function GraphPanel({ graphData, height = 500 }) {
+export default function GraphPanel({ graphData, height = 500, onNodeClick }) {
   const fgRef = useRef();
 
   const data = useMemo(() => {
@@ -132,6 +132,10 @@ export default function GraphPanel({ graphData, height = 500 }) {
           ctx.fillStyle = color;
           ctx.fill();
         }}
+        onNodeClick={(node) => {
+          if (onNodeClick && node.label) onNodeClick(node.label);
+        }}
+        nodeLabel={(node) => onNodeClick ? `Search: Competitors to ${node.label}` : node.label}
         linkColor={(link) => link.color}
         linkWidth={(link) => Math.max(0.5, (link.strength || 0.5) * 2)}
         linkDirectionalParticles={0}

@@ -3,10 +3,17 @@ import ScoreBreakdown from './ScoreBreakdown';
 import { EDGE_COLORS, EDGE_LABELS } from '../../utils/colors';
 import { formatCompositeScore } from '../../utils/format';
 
+function scoreLabel(score) {
+  if (score >= 0.70) return { text: 'Strong',   color: '#15803d' };
+  if (score >= 0.50) return { text: 'Moderate', color: '#92400e' };
+  return                    { text: 'Weak',     color: '#6b7280' };
+}
+
 export default function ResultCard({ result, personaColor, rank }) {
   const [expanded, setExpanded] = useState(false);
   const { name, composite_score, score_breakdown, graph_context } = result;
   const displayRank = rank ?? result.rank;
+  const label = scoreLabel(composite_score);
 
   return (
     <div
@@ -26,9 +33,17 @@ export default function ResultCard({ result, personaColor, rank }) {
         <div className="flex-1 min-w-0">
           <div className="flex items-baseline justify-between gap-2">
             <h3 className="text-surface-800 font-semibold truncate">{name}</h3>
-            <span className="text-sm font-mono text-surface-500 shrink-0">
-              {formatCompositeScore(composite_score)}
-            </span>
+            <div className="flex items-baseline gap-1.5 shrink-0">
+              <span
+                className="text-[10px] font-semibold px-1.5 py-0.5 rounded"
+                style={{ color: label.color, backgroundColor: `${label.color}18` }}
+              >
+                {label.text}
+              </span>
+              <span className="text-sm font-mono text-surface-500">
+                {formatCompositeScore(composite_score)}
+              </span>
+            </div>
           </div>
 
           <div className="mt-1 h-1 rounded-full bg-surface-200 overflow-hidden">

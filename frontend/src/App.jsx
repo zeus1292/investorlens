@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import SearchBar from './components/SearchBar';
 import PersonaSelector from './components/PersonaSelector';
 import LoadingSpinner from './components/common/LoadingSpinner';
@@ -10,6 +10,7 @@ import ExplanationPanel from './components/explanation/ExplanationPanel';
 import CrossPersonaTable from './components/crossPersona/CrossPersonaTable';
 import { useSearch } from './hooks/useSearch';
 import { usePersonas } from './hooks/usePersonas';
+import { fetchHealth } from './api/client';
 
 const DEFAULT_PERSONA = 'value_investor';
 
@@ -42,6 +43,31 @@ export default function App() {
   const [allPersonasMode, setAllPersonasMode] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
   const [activeTab, setActiveTab] = useState('rankings');
+  const [showWarmingBanner, setShowWarmingBanner] = useState(false);
+
+  // Ping health on mount — show warming banner only if server takes > 2s
+  useEffect(() => {
+    let timer;
+    let resolved = false;
+
+    timer = setTimeout(() => {
+      if (!resolved) setShowWarmingBanner(true);
+    }, 2000);
+
+    fetchHealth()
+      .then(() => {
+        resolved = true;
+        clearTimeout(timer);
+        setShowWarmingBanner(false);
+      })
+      .catch(() => {
+        resolved = true;
+        clearTimeout(timer);
+        setShowWarmingBanner(false);
+      });
+
+    return () => { resolved = true; clearTimeout(timer); };
+  }, []);
   const { personas } = usePersonas();
   const {
     results,
@@ -88,12 +114,25 @@ export default function App() {
     clear();
   }, [clear]);
 
+  const handleNodeClick = useCallback((companyLabel) => {
+    setActiveTab('rankings');
+    handleSearch(`Competitors to ${companyLabel}`);
+  }, [handleSearch]);
+
   const hasResults = results && results.results && results.results.length > 0;
+
+  const WarmingBanner = showWarmingBanner ? (
+    <div className="w-full bg-amber-50 border-b border-amber-200 px-4 py-2 text-center text-xs text-amber-800">
+      Server is starting up — first search may take up to 30 seconds. Hang tight.
+    </div>
+  ) : null;
 
   // Landing view
   if (!hasSearched && !loading) {
     return (
-      <div className="min-h-screen bg-surface-50 flex flex-col items-center justify-center px-4">
+      <div className="min-h-screen bg-surface-50 flex flex-col">
+        {WarmingBanner}
+        <div className="flex-1 flex flex-col items-center justify-center px-4">
         <div className="w-full max-w-3xl space-y-10 text-center">
           {/* Title */}
           <div className="space-y-3">
@@ -130,6 +169,7 @@ export default function App() {
             mode="landing"
           />
         </div>
+        </div>
       </div>
     );
   }
@@ -137,6 +177,7 @@ export default function App() {
   // Results view
   return (
     <div className="min-h-screen bg-surface-50">
+      {WarmingBanner}
       {/* Compact header */}
       <header className="sticky top-0 z-50 bg-surface-50/95 backdrop-blur border-b border-surface-200">
         <div className="max-w-7xl mx-auto px-4 py-3">
@@ -208,7 +249,7 @@ export default function App() {
               )}
 
               {activeTab === 'relationship-map' && (
-                <GraphPanel graphData={results.graph_data} height={620} />
+                <GraphPanel graphData={results.graph_data} height={620} onNodeClick={handleNodeClick} />
               )}
             </div>
 
