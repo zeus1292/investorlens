@@ -10,12 +10,14 @@ InvestorLens is a persona-driven company intelligence search engine for the Ente
 - **Observability:** LangSmith
 - **Knowledge Graph:** Neo4j (Docker, local — `neo4j-investorlens` container)
 - **LLM Enrichment:** OpenAI GPT-4o via LangChain (LangChain-OpenAI). Anthropic support built in but unused (no credits).
+- **LLM Evaluation:** GPT-4o-mini as judge via LangSmith `evaluate()`
 - **Data Ingestion:** SEC EDGAR API (primary), yfinance (seeded fallback — Yahoo rate-limits from local env)
-- **Deployment:** Vercel (frontend) + Railway/Render (backend) + Neo4j Aura
+- **Deployment:** Vercel (frontend) + Render free tier (backend) + Neo4j Aura
 
 ## Project Structure
 ```
 InvestorLens/
+├── render.yaml                # Render deployment config (free tier, build + start commands)
 ├── backend/
 │   ├── config.py                  # Centralized env config (.env loading)
 │   ├── requirements.txt           # Python dependencies
@@ -43,9 +45,14 @@ InvestorLens/
 │   │   ├── explainer.py           # NL explanation generator (GPT-4o)
 │   │   ├── nodes.py               # search_node, explain_node, synthesize_node
 │   │   └── graph.py               # LangGraph StateGraph: search→explain→synthesize
+│   ├── evals/
+│   │   ├── __init__.py
+│   │   ├── dataset.py             # 6 verified demo queries with reference outputs for LangSmith
+│   │   ├── evaluators.py          # 3 LLM-as-judge + 5 deterministic evaluators
+│   │   └── run_evals.py           # CLI runner: --no-llm for fast structural check
 │   └── api/
 │       ├── __init__.py
-│       ├── main.py                # FastAPI app, CORS, LangSmith setup
+│       ├── main.py                # FastAPI app, CORS (ALLOWED_ORIGINS env var), LangSmith setup
 │       ├── models.py              # Pydantic request/response models
 │       └── routes/
 │           ├── __init__.py
@@ -58,7 +65,7 @@ InvestorLens/
 │   ├── package.json
 │   ├── src/
 │   │   ├── main.jsx               # React entry point
-│   │   ├── App.jsx                # Landing/results view switcher, DataSnapshot, hasSearched state
+│   │   ├── App.jsx                # Landing/results view switcher; tab state (Rankings / Relationship Map); cold start banner; node click handler
 │   │   ├── index.css              # Tailwind @theme — light pastel green palette
 │   │   ├── api/
 │   │   │   └── client.js          # API client (BASE from VITE_API_URL env var)
@@ -71,8 +78,10 @@ InvestorLens/
 │   │   │   ├── PersonaSelector.jsx # compact (pills) / default (large cards with descriptions)
 │   │   │   ├── DemoQueries.jsx    # 3 curated queries per persona (PERSONA_QUERIES map)
 │   │   │   ├── common/            # ErrorBanner, LoadingSpinner, MetadataBar
-│   │   │   ├── results/           # ResultCard (collapsible), ScoreBreakdown (pie chart), ResultsContainer, Competitor/Compare/Acquisition/AttributeResults (2-col grid)
-│   │   │   ├── graph/             # GraphPanel — force-directed with d3 repulsion, sector colors, legend
+│   │   │   ├── results/           # ResultCard (collapsible + Strong/Moderate/Weak badge),
+│   │   │   │                      # ScoreBreakdown (pie chart), ResultsContainer (info icon tooltip),
+│   │   │   │                      # Competitor/Compare/Acquisition/AttributeResults (CSS columns layout)
+│   │   │   ├── graph/             # GraphPanel — force-directed, clickable nodes, sector colors, legend
 │   │   │   ├── explanation/       # ExplanationPanel — NL analysis + key insights
 │   │   │   └── crossPersona/      # CrossPersonaTable — 5-persona side-by-side
 │   │   └── utils/
@@ -89,7 +98,8 @@ InvestorLens/
 2. **Phase 2: Search + Persona Ranking Engine** — COMPLETED
 3. **Phase 3: LangGraph Orchestration + NL Explanations + FastAPI API** — COMPLETED
 4. **Phase 4: Frontend** — COMPLETED
-5. **Phase 5: Deployment** — Vercel (frontend) + Railway (backend) + Neo4j Aura
+5. **Phase 5: Evaluations** — COMPLETED
+6. **Phase 6: Deployment** — Vercel (frontend) + Render free tier (backend) + Neo4j Aura
 
 ## Phase 1 Completed — What's In the Graph
 - **37 Company nodes** across 6 sectors, all with LLM-enriched scores
@@ -195,11 +205,12 @@ python3 backend/search/test_queries.py
 - **Informatica CIK** — corrected to 0001868778 (was wrong in initial mapping)
 - **Neo4j via Docker** — local container, not Aura cloud
 - **Bidirectional COMPETES_WITH** — edges created in both directions, queries deduplicate with `WITH t, max(r.strength)`
+- **Render over Railway** — Render has a true free tier; Railway requires $5/month minimum. Cold start (~50s) acceptable for ≤10 users/month.
+- **GPT-4o-mini for evaluation** — cheaper than GPT-4o, sufficient for LLM-as-judge scoring
 
 ## Important Notes
 - The user worked at C3 AI — Query 4 results must be personally validatable
 - Ranking is a product philosophy, not a technical detail — this is the core insight
-- Ship Value Investor/PE/VC personas first, add Acquirer/Buyer in Phase 3
 - `companies.json` is the single source of truth — all pipelines read from and write back to it
 - LLM enrichment supports `--provider openai` and `--provider anthropic` flags
 - Neo4j container must be running for graph operations: `docker start neo4j-investorlens`
@@ -250,8 +261,8 @@ uvicorn backend.api.main:app --reload --port 8000
 - **LangSmith tracing:** auto-enabled when `LANGCHAIN_TRACING_V2=true` in `.env`
 - **NL generation:** 4 prompt templates (competitors, compare, acquisition, attribute) with persona-specific voice hints
 
-### Verified All 6 Demo Queries via API
-All queries return correct ranked results matching Phase 2 verification, with persona-appropriate NL explanations.
+### CORS Configuration
+Production frontend URL is passed via `ALLOWED_ORIGINS` env var (comma-separated). Localhost origins are always included as fallback for local dev.
 
 ## Phase 4 Completed — Frontend
 
@@ -259,9 +270,13 @@ All queries return correct ranked results matching Phase 2 verification, with pe
 - **Light pastel green theme** — `surface-50` (#f4f8f5) body, white cards, green accent
 - **Persona-first landing page:** Title → DataSnapshot (37/6/384/5) → "Pick your lens" persona cards → persona-specific demo queries → centered search bar
 - **Landing → Results transition:** first search flips to compact sticky header (logo + persona pills + search input + all-personas checkbox)
-- **Collapsible result cards** in 2-column grid — collapsed shows rank + name + score; expand for donut pie chart breakdown + graph context badges
+- **Tab interface on results page:** "Rankings" tab (result cards + AI explanation) and "Relationship Map" tab (graph full-width at 620px). Tab resets to Rankings on every new search.
+- **Collapsible result cards** in CSS columns layout (not CSS grid) — expanding a card pushes neighbours down naturally with no blank spaces. Collapsed shows rank + name + score + Strong/Moderate/Weak badge. Expanded shows donut pie chart breakdown + graph context badges.
+- **Score labels:** Strong (≥0.70, green) / Moderate (0.50–0.69, amber) / Weak (<0.50, gray) badge on every card.
+- **Info icon tooltip** in top-right of results — explains how to read the pie chart slices and score numbers. Tooltip drops below the icon (not above, avoids sticky header clip), right-aligned, white background with dark text.
+- **Cold start warning banner** — amber strip shown after 2s if `/health` hasn't responded. Auto-dismisses when server replies. Appears on both landing and results views.
+- **Clickable graph nodes** — hovering shows "Search: Competitors to {company}" tooltip; clicking fires that search and switches to Rankings tab.
 - **SVG donut pie charts** for score breakdown (replaced horizontal bars)
-- **Force-directed graph panel** — d3 charge -300 repulsion, 100px link distance, 500px height, sector-colored nodes at reduced opacity, label background pills, sector color legend
 - **Cross-persona comparison table** when "All personas" is checked
 
 ### How to Run Frontend
@@ -274,36 +289,98 @@ npm run build  # production build to dist/
 
 ### API Base URL
 - **Dev:** Vite proxy in `vite.config.js` forwards `/api` + `/health` to `http://localhost:8000`
-- **Production:** Set `VITE_API_URL` env var to deployed backend URL (e.g. `https://investorlens-api.up.railway.app`). Read in `src/api/client.js` via `import.meta.env.VITE_API_URL`
+- **Production:** Set `VITE_API_URL` env var to deployed backend URL. Read in `src/api/client.js` via `import.meta.env.VITE_API_URL`
 
 ### Frontend Key Files
 | File | Purpose |
 |------|---------|
-| `App.jsx` | Landing/results view switcher, DataSnapshot, hasSearched state |
+| `App.jsx` | Landing/results switcher; `activeTab` state; cold start banner via `/health` ping; `handleNodeClick` fires "Competitors to X" on graph node click |
 | `SearchBar.jsx` | `mode="landing"` (hero) / `mode="header"` (compact row) |
 | `PersonaSelector.jsx` | `compact` prop: pills for header, large cards for landing |
 | `DemoQueries.jsx` | `PERSONA_QUERIES` map — 3 curated queries per persona |
-| `ResultCard.jsx` | Collapsible card (click to expand pie chart + badges) |
+| `ResultCard.jsx` | Collapsible card + `scoreLabel()` helper for Strong/Moderate/Weak badge |
 | `ScoreBreakdown.jsx` | SVG donut pie chart + color legend |
-| `GraphPanel.jsx` | Force-directed graph, d3 forces, sector colors |
+| `ResultsContainer.jsx` | Routes query_type to result component; renders `PieChartInfo` tooltip |
+| `CompetitorResults.jsx` | CSS `columns-2` layout with `break-inside-avoid` — no blank spaces on expand |
+| `GraphPanel.jsx` | Force-directed graph; `onNodeClick` prop triggers search from App.jsx |
 | `colors.js` | PERSONA_COLORS, PERSONA_BG_COLORS, EDGE_COLORS, SECTOR_COLORS |
-| `client.js` | API client — `VITE_API_URL` env var for production base URL |
+| `client.js` | API client — `fetchHealth` used for cold start detection on mount |
+
+## Phase 5 Completed — Evaluations
+
+### Overview
+LangSmith-based evaluation suite covering both LLM-as-judge quality checks and deterministic structural validations. Dataset of 6 verified demo queries is stored in LangSmith and reused across runs.
+
+### How to Run Evaluations
+```bash
+source backend/venv/bin/activate
+
+# First time only — create the dataset in LangSmith
+python backend/evals/run_evals.py --create-dataset
+
+# Full suite (deterministic + LLM-as-judge, ~$0.10/run with gpt-4o-mini)
+python backend/evals/run_evals.py
+
+# Fast structural check — no LLM cost
+python backend/evals/run_evals.py --no-llm
+```
+
+### Evaluators
+
+**LLM-as-judge (GPT-4o-mini)**
+| Evaluator | What it checks |
+|-----------|---------------|
+| `hallucination_free` | Explanation only references companies/data present in structured results |
+| `answer_relevance` | Explanation directly addresses the user's query |
+| `persona_alignment` | Explanation frames findings through the active persona's priorities |
+
+**Deterministic**
+| Evaluator | What it checks |
+|-----------|---------------|
+| `graph_loaded` | `graph_data` has ≥1 node and ≥1 edge |
+| `results_populated` | Results list non-empty; every item has name, composite_score, score_breakdown |
+| `score_in_range` | All `composite_score` values are within [0, 1] |
+| `rationale_present` | Every result has ≥2 non-zero score_breakdown factors |
+| `expected_companies_in_results` | At least one reference company appears in top-5 results |
+
+### Key Tunable Parameters
+- `_PERSONA_FOCUS` dict in `evaluators.py` — one-line priority description per persona used by the `persona_alignment` judge. Edit these to tighten/loosen what "aligned" means.
+- `results[:5]` in `expected_companies_in_results` — change to `results[:3]` for stricter accuracy.
+- `len(nonzero) < 2` in `rationale_present` — raise threshold for stricter rationale coverage.
+- Dataset `expected_companies` lists in `dataset.py` — add/remove company_ids to refine ground truth.
+
+### LangSmith Dataset
+- **Name:** `investorlens-eval-v1`
+- **Examples:** 6 (one per demo query, covering all 4 query types)
+- **View at:** https://smith.langchain.com
 
 ## Deployment
 
-### Frontend — Vercel (GitHub integration)
+### Free Hosting Stack (no credit card required)
+| Service | Platform | Notes |
+|---------|----------|-------|
+| Frontend | Vercel free tier | Auto-deploys on push to main |
+| Backend | Render free tier | Sleeps after 15min; ~50s cold start |
+| Database | Neo4j Aura free | 200MB, 200k nodes — sufficient for 37 companies |
+
+### Deployment Steps (one-time)
+1. **Neo4j Aura** — create free instance at console.neo4j.io, then load data: `NEO4J_URI=neo4j+s://... python3 backend/graph/loader.py`
+2. **Render** — connect `zeus1292/investorlens` repo; `render.yaml` at root is auto-detected
+3. **Vercel** — connect same repo, root directory = `frontend`, set `VITE_API_URL`
+4. **Wire CORS** — set `ALLOWED_ORIGINS=https://your-app.vercel.app` in Render env vars
+
+### Backend — Render
+- **Config file:** `render.yaml` (repo root)
+- **Build command:** `pip install -r backend/requirements.txt`
+- **Start command:** `uvicorn backend.api.main:app --host 0.0.0.0 --port $PORT`
+- **Required env vars:** `OPENAI_API_KEY`, `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD`, `SEC_EDGAR_USER_AGENT`, `ALLOWED_ORIGINS`, `LANGCHAIN_TRACING_V2`
+
+### Frontend — Vercel
 - **Repo:** github.com/zeus1292/investorlens
-- **Root Directory:** `frontend` (set in Vercel project settings)
+- **Root Directory:** `frontend`
 - **Build Command:** `npm run build`
 - **Output Directory:** `dist`
-- **Environment Variable:** `VITE_API_URL` = deployed backend URL
-- Vercel auto-deploys on push to main
-
-### Backend — Railway (recommended)
-- Needs: FastAPI + Neo4j connection
-- **Required env vars:** `OPENAI_API_KEY`, `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD`, `SEC_EDGAR_USER_AGENT`, `LANGCHAIN_TRACING_V2`, `LANGCHAIN_API_KEY`
-- **Start command:** `uvicorn backend.api.main:app --host 0.0.0.0 --port $PORT`
-- Neo4j Aura (free tier) replaces local Docker container
+- **Environment Variable:** `VITE_API_URL` = Render backend URL
 
 ### GitHub Remote
 - **Origin:** `https://github.com/zeus1292/investorlens.git`

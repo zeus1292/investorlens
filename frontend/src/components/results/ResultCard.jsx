@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ScoreBreakdown from './ScoreBreakdown';
+import CompanyLogo from '../common/CompanyLogo';
 import { EDGE_COLORS, EDGE_LABELS } from '../../utils/colors';
 import { formatCompositeScore } from '../../utils/format';
 
@@ -11,7 +12,7 @@ function scoreLabel(score) {
 
 export default function ResultCard({ result, personaColor, rank }) {
   const [expanded, setExpanded] = useState(false);
-  const { name, composite_score, score_breakdown, graph_context } = result;
+  const { name, company_id, composite_score, score_breakdown, graph_context } = result;
   const displayRank = rank ?? result.rank;
   const label = scoreLabel(composite_score);
 
@@ -21,14 +22,16 @@ export default function ResultCard({ result, personaColor, rank }) {
       style={{ borderLeftWidth: '3px', borderLeftColor: personaColor }}
       onClick={() => setExpanded((v) => !v)}
     >
-      {/* Always visible: rank + name + score + mini bar */}
+      {/* Always visible: rank + logo + name + score + mini bar */}
       <div className="flex items-center gap-3">
         <span
-          className="text-xl font-bold leading-none"
+          className="text-xl font-bold leading-none w-5 text-center shrink-0"
           style={{ color: personaColor, opacity: 0.8 }}
         >
           {displayRank}
         </span>
+
+        <CompanyLogo companyId={company_id} name={name} size={28} />
 
         <div className="flex-1 min-w-0">
           <div className="flex items-baseline justify-between gap-2">

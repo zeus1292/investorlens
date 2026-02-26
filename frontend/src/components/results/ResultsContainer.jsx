@@ -81,6 +81,7 @@ export default function ResultsContainer({ data }) {
             results={data.results}
             personaColor={personaColor}
             targetCompany={data.query?.target_company}
+            targetCompanyId={data.query?.target_company}
           />
         );
     }
