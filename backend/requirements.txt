@@ -6,7 +6,6 @@ langchain-openai==1.1.9
 langgraph==1.0.8
 langsmith==0.7.3
 neo4j==5.25.0
-yfinance==0.2.48
 requests==2.32.3
 python-dotenv==1.0.1
 pydantic==2.9.2
