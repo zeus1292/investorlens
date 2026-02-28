@@ -1,6 +1,15 @@
 import { useRef, useCallback, useEffect, useMemo } from 'react';
 import ForceGraph2D from 'react-force-graph-2d';
-import { SECTOR_COLORS, EDGE_COLORS } from '../../utils/colors';
+import { SECTOR_COLORS, EDGE_COLORS, EDGE_LABELS } from '../../utils/colors';
+
+const EDGE_DESCRIPTIONS = {
+  COMPETES_WITH:          'Both companies target the same buyers with similar products. Thicker line = stronger competitive overlap.',
+  DISRUPTS:               "One company's approach actively threatens another's core market position.",
+  PARTNERS_WITH:          'A documented integration, reseller, or technology partnership exists between the two.',
+  TARGETS_SAME_SEGMENT:   'Both companies sell into the same buyer segment (e.g. Cloud Data Platforms).',
+  SHARES_INVESTMENT_THEME:'Both companies benefit from the same macro investment narrative (e.g. open source, consumption pricing).',
+  SUPPLIES_TO:            "One company's product is a key input or dependency for the other.",
+};
 
 function hexToRgba(hex, alpha) {
   const r = parseInt(hex.slice(1, 3), 16);
@@ -143,6 +152,48 @@ export default function GraphPanel({ graphData, height = 500, onNodeClick }) {
         d3AlphaDecay={0.02}
         d3VelocityDecay={0.25}
       />
+
+      {/* How to read this graph */}
+      <div className="px-4 py-3 border-t border-surface-200 bg-surface-50 text-xs text-surface-600">
+        <p className="font-semibold text-surface-800 mb-2">How to read this graph</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Nodes */}
+          <div>
+            <p className="font-medium text-surface-700 mb-1.5">Nodes (companies)</p>
+            <ul className="space-y-1 leading-relaxed">
+              <li><span className="font-medium text-surface-800">Glow</span> — the query company (your starting point)</li>
+              <li><span className="font-medium text-surface-800">Size</span> — proportional to market cap; larger = bigger company</li>
+              <li><span className="font-medium text-surface-800">Colour</span> — sector (see legend above)</li>
+              {onNodeClick && (
+                <li><span className="font-medium text-surface-800">Click</span> — runs "Competitors to …" search for that company</li>
+              )}
+            </ul>
+          </div>
+
+          {/* Edges */}
+          <div>
+            <p className="font-medium text-surface-700 mb-1.5">Edges (relationships)</p>
+            <ul className="space-y-1 leading-relaxed">
+              {Object.entries(EDGE_DESCRIPTIONS).map(([type, desc]) => (
+                <li key={type} className="flex gap-2">
+                  <span
+                    className="mt-0.5 shrink-0 inline-block w-2.5 h-2.5 rounded-full"
+                    style={{ backgroundColor: EDGE_COLORS[type] }}
+                  />
+                  <span>
+                    <span className="font-medium text-surface-800">{EDGE_LABELS[type]}</span>
+                    {' — '}
+                    {desc}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <p className="mt-2.5 text-surface-500 italic">
+          Line thickness reflects relationship strength — thicker lines indicate a stronger or more documented connection.
+        </p>
+      </div>
     </div>
   );
 }
