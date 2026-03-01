@@ -77,7 +77,7 @@ InvestorLens/
 │   │   │   ├── SearchBar.jsx      # mode="landing" (hero) / mode="header" (compact)
 │   │   │   ├── PersonaSelector.jsx # compact (pills) / default (large cards with descriptions)
 │   │   │   ├── DemoQueries.jsx    # 3 curated queries per persona (PERSONA_QUERIES map)
-│   │   │   ├── common/            # ErrorBanner, LoadingSpinner, MetadataBar
+│   │   │   ├── common/            # ErrorBanner, LoadingSpinner, MetadataBar, CompanyLogo (Google favicon, initials fallback)
 │   │   │   ├── results/           # ResultCard (collapsible + Strong/Moderate/Weak badge),
 │   │   │   │                      # ScoreBreakdown (pie chart), ResultsContainer (info icon tooltip),
 │   │   │   │                      # Competitor/Compare/Acquisition/AttributeResults (CSS columns layout)
@@ -86,7 +86,8 @@ InvestorLens/
 │   │   │   └── crossPersona/      # CrossPersonaTable — 5-persona side-by-side
 │   │   └── utils/
 │   │       ├── colors.js          # PERSONA_COLORS, PERSONA_BG_COLORS, EDGE_COLORS, SECTOR_COLORS
-│   │       └── format.js          # formatCompositeScore, formatAttributeName, formatElapsed
+│   │       ├── format.js          # formatCompositeScore, formatAttributeName, formatElapsed
+│   │       └── logos.js           # COMPANY_DOMAINS map (37 entries) + getCompanyDomain() helper
 ├── .env                           # API keys: OPENAI_API_KEY, ANTHROPIC_API_KEY, NEO4J creds, etc.
 ├── .env.example                   # Template for .env
 ├── .gitignore
@@ -214,16 +215,30 @@ python3 backend/search/test_queries.py
 - `companies.json` is the single source of truth — all pipelines read from and write back to it
 - LLM enrichment supports `--provider openai` and `--provider anthropic` flags
 - Neo4j container must be running for graph operations: `docker start neo4j-investorlens`
+- `tools_condition` is NOT in langgraph 1.0.8 — use the custom `_tools_condition` in `graph.py`
 
-## Phase 3 Completed — LangGraph Agent + API
+## Phase 3 Completed — LangGraph Agent + API (Agentic Redesign)
 
-### Architecture
+### Architecture (post-redesign)
 ```
-[FastAPI REST API]  →  [LangGraph Agent]  →  [Phase 2 Search]  →  [Neo4j]
-                          search → explain → synthesize
-                                    ↓
-                              [GPT-4o NL gen]
+[FastAPI REST API]  →  [LangGraph Agent]  →  [Neo4j via tools]
+                    data_gathering ↔ tools  (ReAct loop, GPT-4o picks traversal strategy)
+                           ↓ (stops calling tools)
+                         rank_node           (deterministic persona scoring)
+                           ↓
+                       [conditional]
+                           ↓
+                       explain_node          (GPT-4o NL gen, optional)
+                           ↓
+                       synthesize_node
 ```
+
+### What Changed vs Original 3-Node Pipeline
+- `search_node` split into: **data_gathering_node** (ReAct GPT-4o agent) + **rank_node** (deterministic)
+- Agent has 6 tools to pick traversal strategies: `find_competitors`, `find_adjacent`, `get_company_profile`, `compare_companies`, `find_acquisition_targets`, `search_by_attribute`
+- Per-persona strategy hints guide which tools to call first (e.g. Growth VC starts with DISRUPTS edges)
+- `rank_node` falls back to legacy `search()` if agent gathers nothing
+- `explain_node`, `synthesize_node`, API routes, `run_agent()` signature: **unchanged**
 
 ### How to Run the API
 ```bash
@@ -302,7 +317,7 @@ npm run build  # production build to dist/
 | `ScoreBreakdown.jsx` | SVG donut pie chart + color legend |
 | `ResultsContainer.jsx` | Routes query_type to result component; renders `PieChartInfo` tooltip |
 | `CompetitorResults.jsx` | CSS `columns-2` layout with `break-inside-avoid` — no blank spaces on expand |
-| `GraphPanel.jsx` | Force-directed graph; `onNodeClick` prop triggers search from App.jsx |
+| `GraphPanel.jsx` | Force-directed graph; `onNodeClick` prop triggers search from App.jsx; "How to read this graph" summary panel below canvas (nodes + all 6 edge types with colour swatches + line-thickness note) |
 | `colors.js` | PERSONA_COLORS, PERSONA_BG_COLORS, EDGE_COLORS, SECTOR_COLORS |
 | `client.js` | API client — `fetchHealth` used for cold start detection on mount |
 
