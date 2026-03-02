@@ -192,7 +192,7 @@ def data_gathering_node(state: dict) -> dict:
             # First iteration: seed with the user query
             messages = [HumanMessage(content=state.get("query", ""))]
 
-        llm = ChatOpenAI(model="gpt-4o", temperature=0)
+        llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
         llm_with_tools = llm.bind_tools(TOOLS)
         full_messages = [SystemMessage(content=system_content)] + messages
         response = llm_with_tools.invoke(full_messages)
