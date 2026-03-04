@@ -1,20 +1,26 @@
 const BASE = import.meta.env.VITE_API_URL || '';
 
 export async function searchQuery({ query, persona, includeExplanation = false, allPersonas = false }, signal) {
-  const res = await fetch(`${BASE}/api/search`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      query,
-      persona,
-      include_explanation: includeExplanation,
-      all_personas: allPersonas,
-    }),
-    signal,
-  });
+  let res;
+  try {
+    res = await fetch(`${BASE}/api/search`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query,
+        persona,
+        include_explanation: includeExplanation,
+        all_personas: allPersonas,
+      }),
+      signal,
+    });
+  } catch (e) {
+    if (e.name === 'AbortError') throw e;
+    throw new Error('Unable to reach the server. It may still be starting up — please wait a moment and try again.');
+  }
   if (!res.ok) {
-    const err = await res.json().catch(() => ({ detail: res.statusText }));
-    throw new Error(err.detail || `Search failed (${res.status})`);
+    const err = await res.json().catch(() => ({ detail: null }));
+    throw new Error(err.detail || 'Something went wrong. Please try your search again.');
   }
   return res.json();
 }
