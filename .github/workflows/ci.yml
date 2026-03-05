@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  # ── Job 1: Lint ─────────────────────────────────────────────────────────────
+  # Runs on every push and PR. No secrets needed, catches syntax errors fast.
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install ruff
+        run: pip install ruff
+
+      - name: Check backend
+        run: ruff check backend/ --select E,F,W --ignore E501
+
+  # ── Job 2: Structural Evals ─────────────────────────────────────────────────
+  # Runs only on pushes to main (not PRs) to avoid burning API quota on drafts.
+  # Uses the real Neo4j Aura + OpenAI + LangSmith — no local containers needed.
+  evals:
+    name: Structural Evals (--no-llm)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r backend/requirements.txt
+
+      - name: Run structural evaluations
+        run: python backend/evals/run_evals.py --no-llm
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          NEO4J_URI: ${{ secrets.NEO4J_URI }}
+          NEO4J_USER: ${{ secrets.NEO4J_USER }}
+          NEO4J_PASSWORD: ${{ secrets.NEO4J_PASSWORD }}
+          LANGSMITH_API_KEY: ${{ secrets.LANGSMITH_API_KEY }}
+          LANGCHAIN_TRACING_V2: "true"
+          LANGCHAIN_PROJECT: "investorlens-ci"
+          SEC_EDGAR_USER_AGENT: "InvestorLens CI ci@investorlens.app"

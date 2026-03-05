@@ -13,7 +13,7 @@ from api.models import HealthResponse
 router = APIRouter()
 
 
-@router.get("/health", response_model=HealthResponse)
+@router.get("/health", response_model=HealthResponse, tags=["Health"])
 def health():
     """Service health check including Neo4j connectivity."""
     neo4j_status = "disconnected"

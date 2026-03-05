@@ -52,7 +52,7 @@ def run_single_query(query: str, persona: str = "value_investor"):
 
 def run_multi_persona(query: str):
     """Run a query across all personas and print top-3 per persona."""
-    print(f"\n  --- All Personas Top-3 ---")
+    print("\n  --- All Personas Top-3 ---")
     results = search_all_personas(query)
     for persona_name in list_personas():
         sr = results[persona_name]
@@ -68,35 +68,35 @@ def main():
 
     # --- Query 1: Competitors to Snowflake (HERO QUERY) ---
     print_separator("-")
-    print(f"\n  QUERY 1 (Hero): \"Competitors to Snowflake\"")
-    print(f"  Must show distinct top-3 per persona.\n")
+    print("\n  QUERY 1 (Hero): \"Competitors to Snowflake\"")
+    print("  Must show distinct top-3 per persona.\n")
     run_single_query("Competitors to Snowflake", "value_investor")
     run_multi_persona("Competitors to Snowflake")
 
     # --- Query 2: Compare Databricks vs Snowflake through PE lens ---
     print_separator("-")
-    print(f"\n  QUERY 2: \"Compare Databricks vs Snowflake through a PE lens\"\n")
+    print("\n  QUERY 2: \"Compare Databricks vs Snowflake through a PE lens\"\n")
     run_single_query("Compare Databricks vs Snowflake through a PE lens")
 
     # --- Query 3: Acquisition target ---
     print_separator("-")
-    print(f"\n  QUERY 3: \"Best acquisition target for Google to compete with Palantir\"\n")
+    print("\n  QUERY 3: \"Best acquisition target for Google to compete with Palantir\"\n")
     run_single_query("Best acquisition target for Google to compete with Palantir")
 
     # --- Query 4: Competitors to C3 AI (personally validatable) ---
     print_separator("-")
-    print(f"\n  QUERY 4: \"Competitors to C3 AI\"\n")
+    print("\n  QUERY 4: \"Competitors to C3 AI\"\n")
     run_single_query("Competitors to C3 AI", "value_investor")
     run_multi_persona("Competitors to C3 AI")
 
     # --- Query 5: Compare Pinecone vs Weaviate through VC lens ---
     print_separator("-")
-    print(f"\n  QUERY 5: \"Compare Pinecone vs Weaviate through a VC lens\"\n")
+    print("\n  QUERY 5: \"Compare Pinecone vs Weaviate through a VC lens\"\n")
     run_single_query("Compare Pinecone vs Weaviate through a VC lens")
 
     # --- Query 6: Attribute search ---
     print_separator("-")
-    print(f"\n  QUERY 6: \"Which data infrastructure companies have the strongest moats?\"\n")
+    print("\n  QUERY 6: \"Which data infrastructure companies have the strongest moats?\"\n")
     run_single_query("Which data infrastructure companies have the strongest moats?")
 
     print_separator("=")

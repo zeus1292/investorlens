@@ -13,9 +13,9 @@ from api.models import PersonaResponse
 router = APIRouter(prefix="/api")
 
 
-@router.get("/personas", response_model=list[PersonaResponse])
+@router.get("/personas", response_model=list[PersonaResponse], tags=["Personas"])
 def list_personas():
-    """List all available investor personas with their scoring weights."""
+    """List all 5 investor personas with display names, descriptions, and scoring weights."""
     return [
         PersonaResponse(
             name=p.name,

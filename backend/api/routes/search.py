@@ -30,7 +30,7 @@ def _user_facing_message(detail: str) -> str:
     return "Something went wrong. Please try your search again."
 
 
-@router.post("/search", response_model=SearchResponse)
+@router.post("/search", response_model=SearchResponse, tags=["Search"])
 def search_query(req: SearchRequest):
     """Execute a persona-driven search with optional NL explanation."""
     t_start = time.time()

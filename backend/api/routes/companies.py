@@ -45,16 +45,16 @@ def _company_to_response(c: dict) -> CompanyResponse:
     )
 
 
-@router.get("/companies", response_model=list[CompanyResponse])
+@router.get("/companies", response_model=list[CompanyResponse], tags=["Companies"])
 def list_companies():
-    """List all companies in the universe."""
+    """List all 37 companies in the universe with key financials and LLM scores."""
     companies = _load_companies()
     return [_company_to_response(c) for c in companies]
 
 
-@router.get("/companies/{company_id}", response_model=CompanyResponse)
+@router.get("/companies/{company_id}", response_model=CompanyResponse, tags=["Companies"])
 def get_company(company_id: str):
-    """Get a single company by ID."""
+    """Get a single company by its snake_case ID (e.g. `snowflake`, `c3_ai`, `databricks`)."""
     companies = _load_companies()
     for c in companies:
         if c["company_id"] == company_id:

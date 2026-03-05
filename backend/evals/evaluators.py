@@ -157,8 +157,10 @@ def graph_loaded(inputs: dict, outputs: dict, reference_outputs: dict) -> dict:
         return {"key": "graph_loaded", "score": 1,
                 "comment": f"{len(nodes)} nodes, {len(edges)} edges loaded."}
     missing = []
-    if not nodes: missing.append("nodes")
-    if not edges: missing.append("edges")
+    if not nodes:
+        missing.append("nodes")
+    if not edges:
+        missing.append("edges")
     return {"key": "graph_loaded", "score": 0,
             "comment": f"graph_data missing: {', '.join(missing)}."}
 

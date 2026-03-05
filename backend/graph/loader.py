@@ -279,7 +279,7 @@ def run():
     with driver.session() as session:
         node_count = session.run("MATCH (n) RETURN count(n) AS count").single()["count"]
         edge_count = session.run("MATCH ()-[r]->() RETURN count(r) AS count").single()["count"]
-        print(f"\n=== Graph Summary ===")
+        print("\n=== Graph Summary ===")
         print(f"Total nodes: {node_count}")
         print(f"Total edges: {edge_count}")
 
