@@ -197,3 +197,24 @@ python backend/evals/run_evals.py --no-llm
 # Full suite
 python backend/evals/run_evals.py
 ```
+
+---
+
+## CI / CD
+
+A GitHub Actions pipeline runs on every push and pull request to `main`.
+
+| Job | Trigger | What it does |
+|-----|---------|-------------|
+| **Lint** | push + PR | Runs `ruff check` on the backend (E, F, W rules) |
+| **Structural Evals** | push to main only | Runs `run_evals.py --no-llm` against production Neo4j Aura + LangSmith |
+
+The structural eval job uses real infrastructure (no local containers) so it validates the deployed graph on every merge. LLM-as-judge evals are excluded from CI to avoid API cost on every commit.
+
+---
+
+## Recent Updates
+
+- **ReAct agent for data gathering** — replaced the fixed search pipeline with a GPT-4o-mini ReAct agent that reasons about which graph tools to invoke based on query type and active persona
+- **Graceful error handling** — server-side errors are logged in full; clients receive clean, structured error messages
+- **Company logos** — result cards display company favicons with initials fallback

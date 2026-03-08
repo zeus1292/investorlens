@@ -146,10 +146,10 @@ export default function App() {
           {/* Data snapshot */}
           <DataSnapshot />
 
-          {/* Pick your lens */}
+          {/* Pick your persona */}
           <div className="space-y-4">
             <h2 className="text-sm font-semibold text-surface-500 uppercase tracking-wider">
-              Pick your lens
+              Pick your persona
             </h2>
             <PersonaSelector
               personas={personas}
