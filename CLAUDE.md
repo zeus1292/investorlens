@@ -41,10 +41,11 @@ InvestorLens/
 │   ├── agents/
 │   │   ├── __init__.py
 │   │   ├── state.py               # AgentState TypedDict for LangGraph
-│   │   ├── prompts.py             # 4 ChatPromptTemplates + persona voice hints
+│   │   ├── prompts.py             # 4 ChatPromptTemplates + persona voice hints + PERSONA_STRATEGIES
 │   │   ├── explainer.py           # NL explanation generator (GPT-4o)
-│   │   ├── nodes.py               # search_node, explain_node, synthesize_node
-│   │   └── graph.py               # LangGraph StateGraph: search→explain→synthesize
+│   │   ├── tools.py               # 6 LangChain Neo4j tools (find_competitors, find_adjacent, etc.)
+│   │   ├── nodes.py               # data_gathering_node, tools_node, rank_node, explain_node, synthesize_node
+│   │   └── graph.py               # LangGraph StateGraph: data_gathering↔tools→rank→explain→synthesize
 │   ├── evals/
 │   │   ├── __init__.py
 │   │   ├── dataset.py             # 6 verified demo queries with reference outputs for LangSmith
@@ -271,7 +272,7 @@ uvicorn backend.api.main:app --reload --port 8000
 - `all_personas: true` runs query across all 5 personas with cross-persona contrast
 
 ### LangGraph Agent
-- **3 nodes:** `search_node` → `explain_node` → `synthesize_node`
+- **5 nodes:** `data_gathering` ↔ `tools` (ReAct loop) → `rank` → `explain` → `synthesize`
 - **Conditional edge:** skips `explain_node` when `include_explanation=false`
 - **LangSmith tracing:** auto-enabled when `LANGCHAIN_TRACING_V2=true` in `.env`
 - **NL generation:** 4 prompt templates (competitors, compare, acquisition, attribute) with persona-specific voice hints
