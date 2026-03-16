@@ -219,6 +219,7 @@ class HealthResponse(BaseModel):
     status: str = Field(..., description="Always 'ok' when the API is reachable")
     neo4j: str = Field(..., description="Neo4j connection status: connected / disconnected / error")
     company_count: int = Field(default=0, description="Number of Company nodes in the graph")
+    neo4j_error: str | None = Field(default=None, description="Raw Neo4j exception message when neo4j='error'")
 
     model_config = {
         "json_schema_extra": {
@@ -226,6 +227,7 @@ class HealthResponse(BaseModel):
                 "status": "ok",
                 "neo4j": "connected",
                 "company_count": 37,
+                "neo4j_error": None,
             }
         }
     }

@@ -17,6 +17,7 @@ router = APIRouter()
 def health():
     """Service health check including Neo4j connectivity."""
     neo4j_status = "disconnected"
+    neo4j_error = None
     company_count = 0
 
     try:
@@ -27,11 +28,13 @@ def health():
             company_count = result["n"]
             neo4j_status = "connected"
         driver.close()
-    except Exception:
+    except Exception as e:
         neo4j_status = "error"
+        neo4j_error = str(e)
 
     return HealthResponse(
         status="ok",
         neo4j=neo4j_status,
         company_count=company_count,
+        neo4j_error=neo4j_error,
     )
